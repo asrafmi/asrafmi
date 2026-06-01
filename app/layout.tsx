@@ -64,6 +64,9 @@ export const metadata: Metadata = {
       'Portfolio of Asraf Muhammad Izzudin — full-stack programmer with 3.5+ years building scalable web apps and AI products. Based in Indonesia.',
     creator: '@asrafmi',
   },
+  verification: {
+    google: '_KZdaRZxMWdYrNNyZp4ZFp4LaDKpNsZZ-Mz3dkBwwQo',
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
