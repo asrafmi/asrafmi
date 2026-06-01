@@ -31,6 +31,22 @@ const PROJECTS = [
     href: 'https://github.com/asrafmi/emil-portofolio',
     delay: '2',
   },
+  {
+    idx: '05 — Production Live at Satria Muda Indonesia',
+    title: 'Satria Muda Indonesia Website',
+    desc: 'A website for Satria Muda Indonesia, showcasing their events, news, and team information.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'TypeORM', 'PostgreSQL', 'Websocket', 'Docker', 'Kubernetes'],
+    href: 'https://satriamudaindonesia.com',
+    delay: '1',
+  },
+  {
+    idx: '06 — Production Live at Hemdal',
+    title: 'Hemdal — Social Media Monitoring Dashboard',
+    desc: 'A dashboard for monitoring social media metrics and engagement, providing real-time insights and analytics.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'NestJS', 'MySQL', 'Elasticsearch', 'Websocket', 'Docker', 'Kubernetes'],
+    href: 'https://www.hemdal.id',
+    delay: '1',
+  },
 ];
 
 const ArrowIcon = () => (

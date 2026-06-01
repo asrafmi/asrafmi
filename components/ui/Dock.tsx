@@ -51,6 +51,15 @@ const NAV = [
       </svg>
     ),
   },
+  {
+    id: 'articles',
+    label: 'Articles',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    ),
+  },
 ];
 
 const CONTACT = {
