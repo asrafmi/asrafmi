@@ -28,11 +28,7 @@ export default function Home() {
       <Contact onChatOpen={handleChatOpen} />
 
       <footer style={{ borderTop: '1px solid var(--border)', padding: '34px 0' }}>
-        <div style={{
-          maxWidth: 'var(--maxw)', margin: '0 auto', padding: '0 32px',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          flexWrap: 'wrap', gap: 16, fontSize: 13, color: 'var(--muted-2)', fontFamily: 'var(--ff-mono)',
-        }}>
+        <div className="footer-inner">
           <span>© 2026 Asraf Muhammad</span>
           <span>Built with care · Indonesia</span>
           <span>

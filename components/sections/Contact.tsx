@@ -4,8 +4,8 @@ type Props = { onChatOpen?: () => void };
 
 export default function Contact({ onChatOpen }: Props) {
   return (
-    <section id="contact" style={{ padding: '130px 0 200px', textAlign: 'center', position: 'relative' }}>
-      <div style={{ maxWidth: 'var(--maxw)', margin: '0 auto', padding: '0 32px' }}>
+    <section id="contact" className="section-pad" style={{ paddingBottom: 200, textAlign: 'center', position: 'relative' }}>
+      <div className="section-inner">
         <div className="reveal">
           <span style={{
             fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',

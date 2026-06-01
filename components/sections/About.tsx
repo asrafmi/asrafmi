@@ -1,7 +1,7 @@
 export default function About() {
   return (
-    <section id="about" style={{ padding: '130px 0', position: 'relative' }}>
-      <div style={{ maxWidth: 'var(--maxw)', margin: '0 auto', padding: '0 32px' }}>
+    <section id="about" className="section-pad" style={{ position: 'relative' }}>
+      <div className="section-inner">
         <div className="reveal">
           <span style={{
             fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
@@ -12,7 +12,7 @@ export default function About() {
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 0.9fr', gap: 70, alignItems: 'start' }}>
+        <div className="about-grid">
           {/* Left */}
           <div className="reveal" data-delay="1">
             <h2 style={{ fontSize: 'clamp(30px, 4vw, 46px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 18 }}>
@@ -35,8 +35,8 @@ export default function About() {
                 { school: 'Binus Online University', deg: 'Information System — Bachelor (Ongoing)', gpa: '3.94 / 4.0' },
                 { school: 'Telkom University', deg: 'Information System — Diploma 3 · Cumlaude', gpa: '3.90 / 4.0' },
               ].map((edu, i) => (
-                <div key={i} style={{
-                  display: 'flex', justifyContent: 'space-between', gap: 16, padding: '12px 0',
+                <div key={i} className="edu-row" style={{
+                  padding: '12px 0',
                   borderBottom: i === 0 ? '1px dashed var(--border)' : 'none',
                 }}>
                   <div>

@@ -41,8 +41,8 @@ const ArrowIcon = () => (
 
 export default function Projects() {
   return (
-    <section id="projects" style={{ padding: '130px 0', position: 'relative' }}>
-      <div style={{ maxWidth: 'var(--maxw)', margin: '0 auto', padding: '0 32px' }}>
+    <section id="projects" className="section-pad" style={{ position: 'relative' }}>
+      <div className="section-inner">
         <div className="reveal">
           <span style={{
             fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
@@ -58,7 +58,7 @@ export default function Projects() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginTop: 16 }}>
+        <div className="projects-grid">
           {PROJECTS.map((p) => (
             <a
               key={p.title}

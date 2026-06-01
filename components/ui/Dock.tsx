@@ -100,6 +100,7 @@ export default function Dock() {
       }}
     >
       <nav
+        className="dock-nav"
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -116,6 +117,7 @@ export default function Dock() {
           <button
             key={item.id}
             onClick={() => scrollTo(item.id)}
+            className="dock-btn"
             style={btnStyle(item.id)}
             aria-label={item.label}
             title={item.label}
@@ -142,6 +144,7 @@ export default function Dock() {
 
         <button
           onClick={() => scrollTo(CONTACT.id)}
+          className="dock-btn"
           style={btnStyle(CONTACT.id)}
           aria-label={CONTACT.label}
           title={CONTACT.label}

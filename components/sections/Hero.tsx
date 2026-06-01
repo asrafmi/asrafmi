@@ -197,8 +197,8 @@ export default function Hero({ onChatOpen }: { onChatOpen?: () => void }) {
         position: 'relative',
       }}
     >
-      <div style={{ maxWidth: 'var(--maxw)', margin: '0 auto', padding: '0 32px', width: '100%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: 70, alignItems: 'center', width: '100%' }}>
+      <div className="section-inner" style={{ width: '100%' }}>
+        <div className="hero-grid" style={{ width: '100%' }}>
           {/* Left */}
           <div>
             <div className="reveal" style={{
@@ -247,7 +247,7 @@ export default function Hero({ onChatOpen }: { onChatOpen?: () => void }) {
               I lead small teams, ship scalable full-stack products, and chase ideas that affect life positively.
             </p>
 
-            <div className="reveal" data-delay="3" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 34 }}>
+            <div className="reveal hero-links" data-delay="3" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 34 }}>
               <LinkBtn href="https://github.com/asrafmi">
                 <svg viewBox="0 0 24 24" fill="currentColor" width={17} height={17}><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                 GitHub
@@ -262,7 +262,7 @@ export default function Hero({ onChatOpen }: { onChatOpen?: () => void }) {
               </LinkBtn>
             </div>
 
-            <div className="reveal" data-delay="4" style={{ display: 'flex', flexWrap: 'wrap', gap: 22, fontSize: 14, color: 'var(--muted)', fontFamily: 'var(--ff-mono)' }}>
+            <div className="reveal hero-meta" data-delay="4" style={{ display: 'flex', flexWrap: 'wrap', gap: 22, fontSize: 14, color: 'var(--muted)', fontFamily: 'var(--ff-mono)' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={15} height={15} style={{ color: 'var(--muted-2)' }}><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
                 Indonesia
@@ -279,7 +279,7 @@ export default function Hero({ onChatOpen }: { onChatOpen?: () => void }) {
           </div>
 
           {/* Right */}
-          <div className="reveal" data-delay="2">
+          <div className="reveal hero-photo" data-delay="2">
             <PhotoCard />
           </div>
         </div>

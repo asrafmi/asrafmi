@@ -154,6 +154,7 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
       <button
         onClick={openChat}
         aria-label="Chat with Asraf"
+        className="chat-fab"
         style={{
           position: 'fixed',
           bottom: 26,
@@ -178,8 +179,8 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
         <span style={{ width: 30, height: 30, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(0,0,0,0.2)', flexShrink: 0 }}>
           <Image src="/assets/asraf.webp" alt="Asraf" width={30} height={30} style={{ objectFit: 'cover', objectPosition: '50% 20%' }} />
         </span>
-        <span>Chat with Asraf</span>
-        <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#0d3b1f' }} />
+        <span className="chat-fab-label">Chat with Asraf</span>
+        <span className="chat-fab-label" style={{ width: 8, height: 8, borderRadius: '50%', background: '#0d3b1f' }} />
       </button>
 
       {/* Backdrop */}
@@ -199,6 +200,7 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
       {/* Panel */}
       <aside
         aria-hidden={!isOpen}
+        className={`chat-panel${isOpen ? ' open' : ''}`}
         style={{
           position: 'fixed',
           top: 0,

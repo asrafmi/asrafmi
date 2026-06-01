@@ -60,8 +60,8 @@ const EXPERIENCES = [
 
 export default function Experience() {
   return (
-    <section id="experience" style={{ padding: '130px 0', position: 'relative' }}>
-      <div style={{ maxWidth: 'var(--maxw)', margin: '0 auto', padding: '0 32px' }}>
+    <section id="experience" className="section-pad" style={{ position: 'relative' }}>
+      <div className="section-inner">
         <div className="reveal">
           <span style={{
             fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
@@ -78,15 +78,15 @@ export default function Experience() {
         </div>
 
         {/* Timeline */}
-        <div style={{ position: 'relative', marginTop: 20 }}>
-          <div style={{
+        <div className="exp-timeline" style={{ position: 'relative', marginTop: 20 }}>
+          <div className="exp-line" style={{
             position: 'absolute', left: 11, top: 8, bottom: 8, width: 1,
             background: 'linear-gradient(var(--border-2), var(--border), transparent)',
           }} />
 
           {EXPERIENCES.map((exp, i) => (
             <div key={i} className="reveal" data-delay="1" style={{ position: 'relative', padding: '0 0 14px 48px', marginBottom: 14 }}>
-              <span style={{
+              <span className="exp-dot" style={{
                 position: 'absolute', left: 4, top: 6, width: 15, height: 15, borderRadius: '50%',
                 background: 'var(--bg)', border: '2px solid var(--border-2)', transition: 'all 0.4s var(--ease)',
               }} />
@@ -94,7 +94,7 @@ export default function Experience() {
                 border: '1px solid var(--border)', borderRadius: 16, padding: '22px 24px',
                 background: 'var(--surface)', transition: 'border-color 0.4s var(--ease), transform 0.4s var(--ease), background 0.4s',
               }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', alignItems: 'baseline', marginBottom: 4 }}>
+                <div className="exp-header">
                   <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em' }}>
                     {exp.role}
                     {exp.roleSub && <span style={{ color: 'var(--muted-2)', fontWeight: 400, fontSize: 13 }}> {exp.roleSub}</span>}

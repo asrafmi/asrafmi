@@ -14,8 +14,8 @@ const AWARDS = [
 
 export default function Skills() {
   return (
-    <section id="skills" style={{ padding: '130px 0', position: 'relative' }}>
-      <div style={{ maxWidth: 'var(--maxw)', margin: '0 auto', padding: '0 32px' }}>
+    <section id="skills" className="section-pad" style={{ position: 'relative' }}>
+      <div className="section-inner">
         <div className="reveal">
           <span style={{
             fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
@@ -31,7 +31,7 @@ export default function Skills() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: 60, alignItems: 'start' }}>
+        <div className="skills-grid">
           {/* Left — chips */}
           <div className="reveal" data-delay="1">
             {SKILL_CATS.map((cat) => (
