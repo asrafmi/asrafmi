@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     'Asraf',
     'asraf muhammad izzuddin',
     'asrafmi',
+    '@asrafmi',
+    'asraf m. izzuddin',
+    'asraf m izzuddin',
     'Full-Stack Developer',
     'Full-Stack Programmer',
     'Web Developer Indonesia',
@@ -56,6 +59,14 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: BASE_URL,
     siteName: 'Asraf Muhammad Portfolio',
+    images: [
+      {
+        url: `${BASE_URL}/opengraph-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Asraf Muhammad — Programmer & Technology Enthusiast',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
