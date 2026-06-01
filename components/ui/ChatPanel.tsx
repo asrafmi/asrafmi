@@ -176,7 +176,7 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
         }}
       >
         <span style={{ width: 30, height: 30, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(0,0,0,0.2)', flexShrink: 0 }}>
-          <Image src="/assets/asraf.jpeg" alt="Asraf" width={30} height={30} style={{ objectFit: 'cover', objectPosition: '50% 20%' }} />
+          <Image src="/assets/asraf.webp" alt="Asraf" width={30} height={30} style={{ objectFit: 'cover', objectPosition: '50% 20%' }} />
         </span>
         <span>Chat with Asraf</span>
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#0d3b1f' }} />
@@ -220,7 +220,7 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '18px 20px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ position: 'relative', width: 38, height: 38, borderRadius: '50%', overflow: 'hidden', border: '1px solid var(--border-2)', flexShrink: 0 }}>
-            <Image src="/assets/asraf.jpeg" alt="Asraf" fill style={{ objectFit: 'cover', objectPosition: '50% 20%' }} />
+            <Image src="/assets/asraf.webp" alt="Asraf" fill style={{ objectFit: 'cover', objectPosition: '50% 20%' }} />
             <span style={{ position: 'absolute', bottom: 0, right: 0, width: 11, height: 11, borderRadius: '50%', background: 'var(--green)', border: '2px solid #08080a' }} />
           </div>
           <div style={{ flex: 1 }}>
@@ -308,7 +308,7 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
             >
               {m.role === 'assistant' && (
                 <div style={{ width: 28, height: 28, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '1px solid var(--border-2)', position: 'relative' }}>
-                  <Image src="/assets/asraf.jpeg" alt="" fill style={{ objectFit: 'cover', objectPosition: '50% 20%' }} />
+                  <Image src="/assets/asraf.webp" alt="" fill style={{ objectFit: 'cover', objectPosition: '50% 20%' }} />
                 </div>
               )}
               <div

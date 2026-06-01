@@ -120,10 +120,10 @@ function PhotoCard() {
           Online
         </span>
         <Image
-          src="/assets/asraf.jpeg"
+          src="/assets/asraf.webp"
           alt="Asraf Muhammad"
           fill
-          style={{ objectFit: 'cover', objectPosition: '50% 22%', filter: 'grayscale(0.15) contrast(1.04)' }}
+          style={{ objectFit: 'cover', filter: 'grayscale(0.15) contrast(1.04)' }}
           priority
         />
         <div style={{
