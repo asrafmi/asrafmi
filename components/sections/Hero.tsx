@@ -121,7 +121,7 @@ function PhotoCard() {
         </span>
         <Image
           src="/assets/asraf.jpeg"
-          alt="Muhammad Asraf"
+          alt="Asraf Muhammad"
           fill
           style={{ objectFit: 'cover', objectPosition: '50% 22%', filter: 'grayscale(0.15) contrast(1.04)' }}
           priority
@@ -215,7 +215,7 @@ export default function Hero({ onChatOpen }: { onChatOpen?: () => void }) {
             <h1 style={{ fontSize: 'clamp(46px, 7.2vw, 92px)', fontWeight: 800, letterSpacing: '-0.045em', lineHeight: 0.95, marginBottom: 22 }}>
               <span style={{ display: 'block', overflow: 'hidden' }}>
                 <span style={{ display: 'inline-block', transform: loaded ? 'none' : 'translateY(110%)', transition: 'transform 0.9s cubic-bezier(0.16,1,0.3,1)' }}>
-                  Muhammad
+                  Asraf
                 </span>
               </span>
               <span style={{ display: 'block', overflow: 'hidden' }}>
@@ -228,7 +228,7 @@ export default function Hero({ onChatOpen }: { onChatOpen?: () => void }) {
                   backgroundClip: 'text',
                   color: 'transparent',
                 }}>
-                  Asraf
+                  Muhammad
                 </span>
               </span>
             </h1>

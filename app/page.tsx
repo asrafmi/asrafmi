@@ -33,7 +33,7 @@ export default function Home() {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           flexWrap: 'wrap', gap: 16, fontSize: 13, color: 'var(--muted-2)', fontFamily: 'var(--ff-mono)',
         }}>
-          <span>© 2026 Muhammad Asraf</span>
+          <span>© 2026 Asraf Muhammad</span>
           <span>Built with care · Indonesia</span>
           <span>
             <a href="https://github.com/asrafmi" target="_blank" rel="noopener" style={{ transition: 'color 0.3s' }}>GitHub</a>
