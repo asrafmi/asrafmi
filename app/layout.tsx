@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     template: '%s | Asraf Muhammad',
   },
   description:
-    'Portfolio of Asraf Muhammad Izzudin — full-stack programmer with 3.5+ years building scalable web apps and AI products with React, Next.js, Node.js & NestJS. Based in Indonesia. Open to work.',
+    'Portfolio of Asraf Muhammad Izzuddin — full-stack programmer with 3.5+ years building scalable web apps and AI products with React, Next.js, Node.js & NestJS. Based in Indonesia. Open to work.',
   keywords: [
     'Asraf Muhammad',
     'Asraf',
-    'asraf muhammad izzudin',
+    'asraf muhammad izzuddin',
     'asrafmi',
     'Full-Stack Developer',
     'Full-Stack Programmer',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Asraf Muhammad — Programmer & Technology Enthusiast',
     description:
-      'Portfolio of Asraf Muhammad Izzudin — full-stack programmer with 3.5+ years building scalable web apps and AI products. Based in Indonesia.',
+      'Portfolio of Asraf Muhammad Izzuddin — full-stack programmer with 3.5+ years building scalable web apps and AI products. Based in Indonesia.',
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Asraf Muhammad — Programmer & Technology Enthusiast',
     description:
-      'Portfolio of Asraf Muhammad Izzudin — full-stack programmer with 3.5+ years building scalable web apps and AI products. Based in Indonesia.',
+      'Portfolio of Asraf Muhammad Izzuddin — full-stack programmer with 3.5+ years building scalable web apps and AI products. Based in Indonesia.',
     creator: '@asrafmi',
   },
   verification: {
