@@ -6,7 +6,7 @@ const SKILL_CATS = [
 ];
 
 const AWARDS = [
-  '<strong>Highest Performer Employee</strong> — Solusi Teknologi Kreatif (Dec 2025)',
+  '<strong>High Achiever (1 of 13)</strong> — CV. Solusi Teknologi Kreatif, late 2025',
   '<strong>Productzilla Talent Pool Awardee</strong> — channelled directly to partner companies (2022)',
   '<strong>Sidoarjo District Scholarship</strong> — one of 800+ awardees (2022)',
   '<strong>2nd Best Student</strong> — PKS Digital School Data Science Bootcamp',

@@ -26,8 +26,9 @@ export default function About() {
             </p>
             <p style={{ color: 'var(--muted)', fontSize: 17.5, lineHeight: 1.75, marginBottom: 20 }}>
               I care about clean code, measurable impact, and shipping things people actually use —
-              whether that&apos;s a <strong style={{ color: 'var(--text)', fontWeight: 600 }}>54% Lighthouse jump</strong>, a real-time sentiment platform, or an
-              AI tool that writes theses. New ideas, new tech, and the chance to affect life positively keep me going.
+              whether that&apos;s a <strong style={{ color: 'var(--text)', fontWeight: 600 }}>54% Lighthouse jump</strong> on a national logistics
+              platform, or geospatial dashboards used by the <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Indonesian Ministry of Home Affairs</strong>.
+              New ideas, new tech, and the chance to affect life positively keep me going.
             </p>
 
             <div style={{ marginTop: 28, borderTop: '1px solid var(--border)', paddingTop: 24 }}>
@@ -55,7 +56,7 @@ export default function About() {
               {[
                 { num: '3.5', suffix: '+', label: 'years experience', accentNum: true },
                 { num: '15', suffix: '+', label: 'technologies', accentSuffix: true },
-                { num: '4', suffix: '+', label: 'engineers led', accentSuffix: true },
+                { num: '8', suffix: '+', label: 'engineers led', accentSuffix: true },
                 { num: '5', suffix: '+', label: 'companies', accentSuffix: true },
               ].map((stat) => (
                 <div key={stat.label} style={{

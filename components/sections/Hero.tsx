@@ -242,9 +242,10 @@ export default function Hero({ onChatOpen }: { onChatOpen?: () => void }) {
             </div>
 
             <p className="reveal" data-delay="2" style={{ color: 'var(--muted)', fontSize: 17, maxWidth: 480, marginBottom: 36, lineHeight: 1.7 }}>
-              Programmer &amp; technology enthusiast with <strong style={{ color: 'var(--text)', fontWeight: 600 }}>3.5+ years</strong> across the
-              JavaScript ecosystem — <strong style={{ color: 'var(--text)', fontWeight: 600 }}>React, Next.js, Node.js</strong> &amp; NestJS.
-              I lead small teams, ship scalable full-stack products, and chase ideas that affect life positively.
+              Full-Stack Engineer with <strong style={{ color: 'var(--text)', fontWeight: 600 }}>3.5+ years</strong> delivering measurable
+              results — from a <strong style={{ color: 'var(--text)', fontWeight: 600 }}>54% performance uplift</strong> on a national logistics
+              platform to geospatial dashboards used by the Indonesian Ministry of Home Affairs. I lead engineering teams and own
+              features end-to-end, from database to UI, hosting and deployment.
             </p>
 
             <div className="reveal hero-links" data-delay="3" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 34 }}>
