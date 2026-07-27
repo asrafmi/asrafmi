@@ -54,7 +54,7 @@ export default function About() {
           <div className="reveal" data-delay="2">
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               {[
-                { num: '3.5', suffix: '+', label: 'years experience', accentNum: true },
+                { num: '4', suffix: '+', label: 'years experience', accentNum: true },
                 { num: '15', suffix: '+', label: 'technologies', accentSuffix: true },
                 { num: '8', suffix: '+', label: 'engineers led', accentSuffix: true },
                 { num: '5', suffix: '+', label: 'companies', accentSuffix: true },
