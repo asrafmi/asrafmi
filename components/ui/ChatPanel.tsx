@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import Avatar from '@/components/ui/Avatar';
 
 type Role = 'user' | 'assistant';
 type Message = { role: Role; content: string };
@@ -183,9 +184,7 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
         }}
       >
         <span style={{ position: 'relative', width: 38, height: 38, flexShrink: 0 }}>
-          <span style={{ position: 'absolute', inset: 0, borderRadius: '50%', overflow: 'hidden', border: '1px solid var(--border-2)' }}>
-            <Image src="/assets/asraf.webp" alt="" fill sizes="38px" style={{ objectFit: 'cover', objectPosition: '50% 28%', filter: 'grayscale(1)' }} />
-          </span>
+          <Avatar size={38} zoom={1.7} />
           <span style={{ position: 'absolute', right: -1, bottom: -1, width: 11, height: 11, borderRadius: '50%', background: 'var(--accent)', border: '2px solid var(--bg)' }} />
         </span>
         <span className="chat-fab-label mono" style={{ fontSize: 10.5, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, lineHeight: 1.2 }}>

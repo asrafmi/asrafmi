@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import Image from 'next/image';
+import Avatar from '@/components/ui/Avatar';
 import SignalField from '@/components/motion/SignalField';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 import { gsap, SplitText, useGSAP, onIntroDone, prefersReducedMotion, scrollToSection } from '@/lib/motion';
@@ -37,12 +37,14 @@ function Badge() {
       aria-label="Scroll to about"
       style={{ position: 'relative', width: 'clamp(84px, 9vw, 132px)', aspectRatio: '1', flexShrink: 0, color: 'var(--text)' }}
     >
+      <span className="badge-spin" style={{ position: 'absolute', inset: 0 }}>
       <svg viewBox="0 0 100 100" width="100%" height="100%" style={{ animation: 'spin 18s linear infinite' }}>
         <defs><path id="badge-circle" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0" /></defs>
         <text style={{ fontFamily: 'var(--ff-mono)', fontSize: 8.4, letterSpacing: '0.18em', textTransform: 'uppercase', fill: 'var(--muted)' }}>
           <textPath href="#badge-circle">{text}</textPath>
         </text>
       </svg>
+      </span>
       <span style={{
         position: 'absolute', inset: '30%', borderRadius: '50%', background: 'var(--accent)', color: 'var(--on-accent)',
         display: 'grid', placeItems: 'center',
@@ -75,7 +77,7 @@ export default function Hero() {
     const q = gsap.utils.selector(rootRef);
     const split = SplitText.create(q('.hero-line'), { type: 'chars', mask: 'chars' });
     gsap.set(split.chars, { yPercent: 110 });
-    gsap.set(q('.hero-pill'), { width: 0 });
+    gsap.set(q('.hero-photo'), { clipPath: 'circle(0% at 50% 50%)' });
     gsap.set(q('.hero-badge'), { scale: 0, rotate: -90 });
     gsap.set(q('.hero-fade'), { y: 30, opacity: 0 });
     gsap.set(q('.hero-rule'), { scaleX: 0 });
@@ -86,8 +88,8 @@ export default function Hero() {
       played = true;
       gsap.timeline()
         .to(split.chars, { yPercent: 0, stagger: 0.035, duration: 1.4, ease: 'expo.out' })
-        .to(q('.hero-pill'), { width: '1.55em', duration: 1.4, ease: 'expo.inOut' }, 0.25)
-        .from(q('.hero-pill img'), { scale: 1.6, duration: 1.8, ease: 'expo.out' }, 0.35)
+        .to(q('.hero-photo'), { clipPath: 'circle(50% at 50% 50%)', duration: 1.4, ease: 'expo.inOut' }, 0.25)
+        .from(q('.hero-photo img'), { scale: 1.5, duration: 1.8, ease: 'expo.out' }, 0.35)
         .to(q('.hero-badge'), { scale: 1, rotate: 0, duration: 1.4, ease: 'back.out(1.6)' }, 0.5)
         .to(q('.hero-rule'), { scaleX: 1, duration: 1.4, ease: 'expo.inOut' }, 0.4)
         .to(q('.hero-fade'), { y: 0, opacity: 1, stagger: 0.07, duration: 1.2 }, 0.6);
@@ -103,7 +105,7 @@ export default function Hero() {
     out.to('.hero-l1', { xPercent: -10, ease: 'none' }, 0)
       .to('.hero-l2', { xPercent: 8, ease: 'none' }, 0)
       .to('.hero-signal', { yPercent: 30, opacity: 0.2, ease: 'none' }, 0)
-      .to('.hero-badge', { rotate: 220, ease: 'none' }, 0)
+      .to('.badge-spin', { rotate: 220, ease: 'none' }, 0)
       .to('.hero-bottom', { y: -60, opacity: 0, ease: 'none' }, 0);
 
     return () => { stop(); fallback.kill(); };
@@ -140,17 +142,7 @@ export default function Hero() {
         <h1 className="display" style={{ fontSize: 'clamp(56px, 13.4vw, 210px)', marginBottom: 'clamp(28px, 4vw, 56px)' }}>
           <span className="hero-l1" style={{ display: 'flex', alignItems: 'center', gap: '0.12em' }}>
             <span className="hero-line">Asraf</span>
-            <span
-              className="hero-pill"
-              aria-hidden
-              style={{
-                position: 'relative', display: 'inline-block', width: '1.55em', height: '0.72em',
-                borderRadius: 999, overflow: 'hidden', flexShrink: 0, background: 'var(--bg-2)',
-                border: '1px solid var(--border-2)',
-              }}
-            >
-              <Image src="/assets/asraf.webp" alt="" fill priority sizes="360px" style={{ objectFit: 'cover', objectPosition: '50% 40%' }} />
-            </span>
+            <Avatar className="hero-photo" size="0.74em" zoom={1.45} priority />
             <span style={{ flex: 1 }} />
             <Badge />
           </span>
@@ -162,7 +154,7 @@ export default function Hero() {
         <div className="hero-rule" style={{ height: 1, background: 'var(--border-2)', transformOrigin: 'left', marginBottom: 32 }} />
 
         <div className="hero-bottom">
-          <div className="hero-fade" style={{ fontSize: 'clamp(22px, 2.4vw, 32px)', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
+          <div className="hero-fade" style={{ fontSize: 'clamp(22px, 2.4vw, 32px)', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.15, whiteSpace: 'nowrap' }}>
             <span className="muted">I build</span>{' '}
             <span style={{ display: 'inline-block', height: '1.15em', overflow: 'hidden', verticalAlign: 'top' }}>
               <span className="word-col" style={{ display: 'flex', flexDirection: 'column', color: 'var(--accent-ink)' }}>

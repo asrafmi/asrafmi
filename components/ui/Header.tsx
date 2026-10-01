@@ -2,6 +2,7 @@
 
 import { useRef, useSyncExternalStore } from 'react';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import Avatar from '@/components/ui/Avatar';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { SECTIONS, SECTION_IDS } from '@/lib/sections';
 import { gsap, scrollToSection, useGSAP } from '@/lib/motion';
@@ -52,13 +53,7 @@ export default function Header() {
           data-cursor
           style={{ pointerEvents: 'auto', display: 'inline-flex', alignItems: 'center', gap: 12 }}
         >
-          <span style={{
-            width: 40, height: 40, borderRadius: '50%', display: 'grid', placeItems: 'center',
-            border: '1px solid var(--border-2)', background: 'var(--glass)', backdropFilter: 'blur(14px)',
-            fontWeight: 600, fontSize: 13, letterSpacing: '-0.02em',
-          }}>
-            AM
-          </span>
+          <Avatar size={40} zoom={1.7} />
           <span className="mono hud-nav" style={{ color: 'var(--muted)', fontSize: 11 }}>
             Asraf Muhammad
           </span>

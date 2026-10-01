@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/motion';
 import TechIcon from '@/components/ui/TechIcon';
+import { techBrand } from '@/lib/tech';
 
 type Props = { items: string[]; reverse?: boolean; speed?: number; outline?: boolean; icons?: boolean };
 
@@ -37,7 +38,7 @@ export default function Marquee({ items, reverse = false, speed = 40, outline = 
       {items.map((item, i) => (
         <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(24px, 3vw, 48px)', paddingRight: 'clamp(24px, 3vw, 48px)' }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.28em', ...(outline ? { color: 'transparent', WebkitTextStroke: '1px var(--muted-2)' } : null) }}>
-            {icons && <span style={{ color: 'var(--muted-2)', display: 'inline-flex' }}><TechIcon name={item} size="0.62em" /></span>}
+            {icons && <span style={{ color: techBrand(item), display: 'inline-flex' }}><TechIcon name={item} size="0.62em" /></span>}
             {item}
           </span>
           <svg viewBox="0 0 24 24" width="0.42em" height="0.42em" fill="var(--accent-ink)" aria-hidden><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" /></svg>
