@@ -2,6 +2,7 @@
 
 import { useCallback, useRef } from 'react';
 import Hero from '@/components/sections/Hero';
+import PortraitZoom from '@/components/sections/PortraitZoom';
 import About from '@/components/sections/About';
 import Experience from '@/components/sections/Experience';
 import Projects from '@/components/sections/Projects';
@@ -29,6 +30,7 @@ export default function PageClient({ articles }: { articles: React.ReactNode }) 
       <Preloader />
       <Header />
       <Hero />
+      <PortraitZoom />
       <div style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <Marquee items={STACK} icons />
       </div>

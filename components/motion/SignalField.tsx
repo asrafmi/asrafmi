@@ -14,7 +14,7 @@ export default function SignalField() {
     const reduced = prefersReducedMotion();
     let w = 0, h = 0, dpr = 1, raf = 0, t = 0;
     let rgb = '255, 255, 255';
-    let accent = '#c8ff2e';
+    let accent = '#7d97ff';
     let px = 0.5, py = 0.5, tpx = 0.5, tpy = 0.5;
     let visible = true;
 

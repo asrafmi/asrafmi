@@ -71,7 +71,7 @@ export default function Header() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, pointerEvents: 'auto' }}>
           <span className="mono hud-clock" style={{ color: 'var(--muted)', fontSize: 11, display: 'inline-flex', gap: 10, alignItems: 'center' }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--green)', animation: 'pulse 2.4s infinite' }} />
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--live)', animation: 'pulse 2.4s infinite' }} />
             JKT <Clock />
           </span>
           <ThemeToggle />

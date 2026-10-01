@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef } from 'react';
-import Avatar from '@/components/ui/Avatar';
 import SignalField from '@/components/motion/SignalField';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 import { gsap, SplitText, useGSAP, onIntroDone, prefersReducedMotion, scrollToSection } from '@/lib/motion';
@@ -80,7 +79,6 @@ export default function Hero() {
     const q = gsap.utils.selector(rootRef);
     const split = SplitText.create(q('.hero-line'), { type: 'chars', mask: 'chars' });
     gsap.set(split.chars, { yPercent: 110 });
-    gsap.set(q('.hero-photo'), { clipPath: 'circle(0% at 50% 50%)' });
     gsap.set(q('.hero-badge'), { scale: 0, rotate: -90 });
     gsap.set(q('.hero-fade'), { y: 30, opacity: 0 });
     gsap.set(q('.hero-rule'), { scaleX: 0 });
@@ -91,8 +89,6 @@ export default function Hero() {
       played = true;
       gsap.timeline()
         .to(split.chars, { yPercent: 0, stagger: 0.035, duration: 1.4, ease: 'expo.out' })
-        .to(q('.hero-photo'), { clipPath: 'circle(50% at 50% 50%)', duration: 1.4, ease: 'expo.inOut' }, 0.25)
-        .from(q('.hero-photo img'), { scale: 1.5, duration: 1.8, ease: 'expo.out' }, 0.35)
         .to(q('.hero-badge'), { scale: 1, rotate: 0, duration: 1.4, ease: 'back.out(1.6)' }, 0.5)
         .to(q('.hero-rule'), { scaleX: 1, duration: 1.4, ease: 'expo.inOut' }, 0.4)
         .to(q('.hero-fade'), { y: 0, opacity: 1, stagger: 0.07, duration: 1.2 }, 0.6);
@@ -145,7 +141,6 @@ export default function Hero() {
         <h1 className="display" style={{ fontSize: 'clamp(56px, 13.4vw, 210px)', marginBottom: 'clamp(28px, 4vw, 56px)' }}>
           <span className="hero-l1" style={{ display: 'flex', alignItems: 'center', gap: '0.12em' }}>
             <span className="hero-line">Asraf</span>
-            <Avatar className="hero-photo" size="0.74em" zoom={1.45} priority />
             <span style={{ flex: 1 }} />
             <Badge />
           </span>
@@ -184,8 +179,8 @@ export default function Hero() {
             <div className="mono" style={{ display: 'flex', flexWrap: 'wrap', gap: 18, fontSize: 11, color: 'var(--muted)' }}>
               <span>Indonesia</span>
               <a href="tel:+6282245101283" className="ulink">+62 822 4510 1283</a>
-              <span style={{ color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--green)', animation: 'pulse 2.4s infinite' }} />
+              <span style={{ color: 'var(--live)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--live)', animation: 'pulse 2.4s infinite' }} />
                 Open to work
               </span>
             </div>

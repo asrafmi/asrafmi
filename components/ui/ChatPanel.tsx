@@ -234,11 +234,11 @@ export default function ChatPanel({ onOpenRequest }: { onOpenRequest?: (open: ()
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '18px 20px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ position: 'relative', width: 38, height: 38, borderRadius: '50%', overflow: 'hidden', border: '1px solid var(--border-2)', flexShrink: 0 }}>
             <Image src="/assets/asraf.webp" alt="Asraf" fill sizes="38px" style={{ objectFit: 'cover', objectPosition: '50% 28%' }} />
-            <span style={{ position: 'absolute', bottom: 0, right: 0, width: 11, height: 11, borderRadius: '50%', background: 'var(--green)', border: '2px solid var(--bg)' }} />
+            <span style={{ position: 'absolute', bottom: 0, right: 0, width: 11, height: 11, borderRadius: '50%', background: 'var(--live)', border: '2px solid var(--bg)' }} />
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ fontWeight: 600, fontSize: 15 }}>Chat with Asraf</div>
-            <div style={{ fontSize: 12, color: 'var(--green)', fontFamily: 'var(--ff-mono)' }}>● AI twin · online</div>
+            <div style={{ fontSize: 12, color: 'var(--live)', fontFamily: 'var(--ff-mono)' }}>● AI twin · online</div>
           </div>
           <button
             onClick={() => { setMessages([]); }}
