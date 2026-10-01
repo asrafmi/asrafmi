@@ -21,8 +21,8 @@ const BOOTCAMPS = [
 ];
 
 const EDUCATION = [
-  { school: 'Binus Online University', deg: 'Information Systems, Bachelor (still going)', gpa: '3.92', logo: '/assets/edu/binus.svg', w: 255, h: 152 },
-  { school: 'Telkom University', deg: 'Information Systems, Diploma 3 · Cum laude', gpa: '3.90', logo: '/assets/edu/telkom.png', w: 295, h: 360 },
+  { school: 'Binus Online University', deg: 'Information Systems, Bachelor (still going)', gpa: '3.92', logo: '/assets/edu/binus.webp', w: 320, h: 190 },
+  { school: 'Telkom University', deg: 'Information Systems, Diploma 3 · Cum laude', gpa: '3.90', logo: '/assets/edu/telkom.webp', w: 295, h: 360 },
 ];
 
 export default function About() {

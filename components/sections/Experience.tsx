@@ -11,7 +11,7 @@ const EXPERIENCES = [
     role: 'Technical Leader',
     date: 'Jan 2022 to now',
     company: 'CV. Solusi Teknologi Kreatif (STK)',
-    logo: { src: '/assets/work/stk.png', w: 256, h: 256 },
+    logo: { src: '/assets/work/stk.webp', w: 256, h: 256 },
     place: '· Jakarta · Full time',
     items: [
       'Led a squad of <strong>8 engineers</strong> building <strong>Satria Muda Indonesia</strong>, a platform for a national martial arts org with realtime digital scoring, events and asset management (Next.js, NestJS, PostgreSQL, Socket.io).',
@@ -27,7 +27,7 @@ const EXPERIENCES = [
     role: 'Full Stack Developer',
     date: 'Jan 2025 to Dec 2025',
     company: 'Ministry of Home Affairs · SIPD',
-    logo: { src: '/assets/work/kemendagri.png', w: 186, h: 240 },
+    logo: { src: '/assets/work/kemendagri.webp', w: 186, h: 240 },
     place: '· Jakarta · Project based via STK',
     items: [
       'Built <strong>geospatial distribution maps</strong> for national priority programs (MBG, 3 Million Free Housing, Zero Tax), used across <strong>500+ regional governments</strong> with React Leaflet.',
@@ -40,7 +40,7 @@ const EXPERIENCES = [
     role: 'Full Stack Developer',
     date: 'Aug 2022 to Dec 2024',
     company: 'PT. Telkom Indonesia · Apilogy.id',
-    logo: { src: '/assets/work/telkom.svg', w: 200, h: 110 },
+    logo: { src: '/assets/work/telkom.webp', w: 320, h: 176 },
     place: '· Bandung · Project based via STK',
     items: [
       'Revamped the user management UI and got <strong>SUS up 81.9%</strong>, 30% more useful content and visual impression up 53% (Vue.js, Webpack).',
@@ -53,7 +53,7 @@ const EXPERIENCES = [
     role: 'Full Stack Developer',
     date: 'Aug 2022 to Apr 2024',
     company: 'PT. Produkzilla Akademi · Productzilla',
-    logo: { src: '/assets/work/productzilla.png', w: 572, h: 160 },
+    logo: { src: '/assets/work/productzilla.webp', w: 572, h: 160 },
     place: '· Bandung · Project based via STK',
     items: [
       'Turned new UI/UX designs into the user management pages and got <strong>SUS up 90.5%</strong>, 36.4% more useful content and visual impression up 59.6% (Vue.js, Webpack).',
@@ -66,7 +66,7 @@ const EXPERIENCES = [
     role: 'Full Stack Developer',
     date: 'Apr 2024 to Jul 2024',
     company: 'PT. Solusi Kebutuhan Teknologi (Prieds)',
-    logo: { src: '/assets/work/prieds.jpg', w: 200, h: 200 },
+    logo: { src: '/assets/work/prieds.webp', w: 200, h: 200 },
     place: '· Remote · Freelance',
     items: [
       'Shipped 3+ new features, squashed 5+ bugs and leveled up 15+ existing features on a <strong>Warehouse Management System</strong>, web and mobile (Angular, Express, MongoDB).',
