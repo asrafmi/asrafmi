@@ -1,41 +1,20 @@
 'use client';
 
-import { useEffect } from 'react';
+import type { RefObject } from 'react';
+import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/motion';
 
-export function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>('.reveal');
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -8% 0px' }
-    );
-
-    els.forEach((el) => observer.observe(el));
-
-    // Fallback: snap in-view content if transitions can't run
-    const settle = setTimeout(() => {
-      els.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) {
-          el.style.transition = 'none';
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-          el.classList.add('in');
-        }
-      });
-    }, 1300);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(settle);
-    };
-  }, []);
+// Fades/lifts every [data-reveal] inside `scope` as it enters the viewport,
+// batching neighbours so they stagger together.
+export function useReveal(scope: RefObject<HTMLElement | null>) {
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+    const els = gsap.utils.toArray<HTMLElement>('[data-reveal]');
+    if (!els.length) return;
+    gsap.set(els, { y: 48, opacity: 0 });
+    ScrollTrigger.batch(els, {
+      start: 'top 90%',
+      once: true,
+      onEnter: (batch) => gsap.to(batch, { y: 0, opacity: 1, stagger: 0.09, duration: 1.2, overwrite: true }),
+    });
+  }, { scope });
 }

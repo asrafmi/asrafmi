@@ -1,179 +1,75 @@
 'use client';
 
+import { useLayoutEffect, useRef } from 'react';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
-
-const NAV = [
-  {
-    id: 'home',
-    label: 'Home',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
-        <path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-        <path d="M9 21v-7h6v7" />
-      </svg>
-    ),
-  },
-  {
-    id: 'about',
-    label: 'About',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4 21a8 8 0 0 1 16 0" />
-      </svg>
-    ),
-  },
-  {
-    id: 'experience',
-    label: 'Experience',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
-        <rect x="2" y="7" width="20" height="14" rx="2" />
-        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-      </svg>
-    ),
-  },
-  {
-    id: 'projects',
-    label: 'Projects',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
-        <path d="m16 18 6-6-6-6M8 6l-6 6 6 6" />
-      </svg>
-    ),
-  },
-  {
-    id: 'skills',
-    label: 'Skills',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
-        <path d="M12 2 9.2 8.6 2 9.2l5.5 4.7L5.8 21 12 17.3 18.2 21l-1.7-7.1L22 9.2l-7.2-.6z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'articles',
-    label: 'Articles',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
-        <path d="M4 7h16M4 12h16M4 17h16" />
-      </svg>
-    ),
-  },
-];
-
-const CONTACT = {
-  id: 'contact',
-  label: 'Contact',
-  icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={19} height={19}>
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="m3 7 9 6 9-6" />
-    </svg>
-  ),
-};
-
-function scrollTo(id: string) {
-  if (id === 'home') {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
+import { SECTIONS, SECTION_IDS } from '@/lib/sections';
+import { gsap, scrollToSection, useGSAP, onIntroDone, prefersReducedMotion } from '@/lib/motion';
 
 export default function Dock() {
-  const activeId = useScrollSpy([...NAV.map((n) => n.id), CONTACT.id]);
+  const activeId = useScrollSpy(SECTION_IDS);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const pillRef = useRef<HTMLSpanElement>(null);
+  const readyRef = useRef(false);
 
-  const btnStyle = (id: string): React.CSSProperties => ({
-    position: 'relative',
-    width: 44,
-    height: 44,
-    borderRadius: '50%',
-    display: 'grid',
-    placeItems: 'center',
-    color: activeId === id ? 'var(--accent)' : 'var(--muted)',
-    transition: 'color 0.3s, background 0.3s',
-    cursor: 'pointer',
-    border: 'none',
-    background: 'none',
-  });
+  // Slide the highlight pill to the active button.
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    const btn = nav?.querySelector<HTMLElement>(`[data-id="${activeId}"]`);
+    if (!nav || !btn || !pillRef.current) return;
+    const move = () => gsap.to(pillRef.current, {
+      x: btn.offsetLeft, width: btn.offsetWidth, duration: readyRef.current ? 0.7 : 0, ease: 'expo.out',
+    });
+    move();
+    readyRef.current = true;
+    window.addEventListener('resize', move);
+    return () => window.removeEventListener('resize', move);
+  }, [activeId]);
+
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+    gsap.set(rootRef.current, { yPercent: 160 });
+    return onIntroDone(() => gsap.to(rootRef.current, { yPercent: 0, duration: 1.2, delay: 0.9 }));
+  }, { scope: rootRef });
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: 26,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 60,
-      }}
-    >
+    <div ref={rootRef} style={{ position: 'fixed', bottom: 22, left: 0, right: 0, display: 'flex', justifyContent: 'center', zIndex: 60, pointerEvents: 'none' }}>
       <nav
+        ref={navRef}
         className="dock-nav"
+        aria-label="Sections"
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 6,
-          padding: 8,
-          background: 'rgba(12,12,14,0.72)',
-          backdropFilter: 'blur(18px) saturate(1.4)',
-          border: '1px solid var(--border-2)',
-          borderRadius: 100,
-          boxShadow: '0 20px 50px -16px rgba(0,0,0,0.7)',
+          position: 'relative', display: 'flex', alignItems: 'center', padding: 6, pointerEvents: 'auto',
+          background: 'var(--glass)', backdropFilter: 'blur(18px) saturate(1.4)', WebkitBackdropFilter: 'blur(18px) saturate(1.4)',
+          border: '1px solid var(--border-2)', borderRadius: 100, boxShadow: 'var(--shadow)',
         }}
       >
-        {NAV.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => scrollTo(item.id)}
-            className="dock-btn"
-            style={btnStyle(item.id)}
-            aria-label={item.label}
-            title={item.label}
-          >
-            {activeId === item.id && (
-              <span
-                style={{
-                  position: 'absolute',
-                  bottom: 5,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 4,
-                  height: 4,
-                  borderRadius: '50%',
-                  background: 'var(--accent)',
-                }}
-              />
-            )}
-            {item.icon}
-          </button>
-        ))}
-
-        <span style={{ width: 1, height: 26, background: 'var(--border)', margin: '0 4px' }} />
-
-        <button
-          onClick={() => scrollTo(CONTACT.id)}
-          className="dock-btn"
-          style={btnStyle(CONTACT.id)}
-          aria-label={CONTACT.label}
-          title={CONTACT.label}
-        >
-          {activeId === CONTACT.id && (
-            <span
+        <span
+          ref={pillRef}
+          aria-hidden
+          style={{ position: 'absolute', top: 6, bottom: 6, left: 0, width: 0, borderRadius: 100, background: 'var(--text)' }}
+        />
+        {SECTIONS.map((s, i) => {
+          const active = activeId === s.id;
+          return (
+            <button
+              key={s.id}
+              data-id={s.id}
+              onClick={() => scrollToSection(s.id)}
+              className="dock-btn mono"
+              aria-label={s.label}
+              aria-current={active ? 'true' : undefined}
               style={{
-                position: 'absolute',
-                bottom: 5,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 4,
-                height: 4,
-                borderRadius: '50%',
-                background: 'var(--accent)',
+                position: 'relative', height: 38, padding: '0 14px', borderRadius: 100, fontSize: 10.5,
+                color: active ? 'var(--bg)' : 'var(--muted)', transition: 'color 0.5s var(--ease)',
+                display: 'inline-flex', alignItems: 'center', gap: 6,
               }}
-            />
-          )}
-          {CONTACT.icon}
-        </button>
+            >
+              <span>{String(i).padStart(2, '0')}</span>
+              <span className="dock-label">{s.label}</span>
+            </button>
+          );
+        })}
       </nav>
     </div>
   );
