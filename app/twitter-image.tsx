@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Asraf Muhammad — Programmer & Technology Enthusiast';
+export const alt = 'Asraf Muhammad · Programmer & Tech Enthusiast';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -73,7 +73,7 @@ export default function TwitterImage() {
           </div>
 
           <p style={{ margin: 0, fontSize: 18, color: '#737373', maxWidth: 700, lineHeight: 1.5 }}>
-            Full-stack developer · React · Next.js · Node.js · NestJS · AI products · Indonesia
+            Full stack developer · React · Next.js · Node.js · NestJS · AI products · Indonesia
           </p>
 
           <p style={{ margin: 0, fontSize: 16, color: '#6366f1', fontWeight: 500 }}>
