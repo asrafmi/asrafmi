@@ -109,9 +109,9 @@ export default function Skills() {
       </div>
 
       <style>{`
-        .skill-chip .tech-icon { color: var(--muted); transition: color 0.35s var(--ease), transform 0.5s var(--ease); }
+        .skill-chip .tech-icon { color: var(--brand); transition: transform 0.5s var(--ease); }
         .skill-chip:hover { border-color: var(--border-2) !important; background: var(--surface-2); }
-        .skill-chip:hover .tech-icon { color: var(--brand); transform: scale(1.15) rotate(-6deg); }
+        .skill-chip:hover .tech-icon { transform: scale(1.15) rotate(-6deg); }
       `}</style>
     </section>
   );
