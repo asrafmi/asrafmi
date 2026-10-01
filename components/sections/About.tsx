@@ -8,13 +8,20 @@ import { gsap, SplitText, useGSAP, prefersReducedMotion } from '@/lib/motion';
 
 const STATS = [
   { num: 4, label: 'Years shipping' },
-  { num: 15, label: 'Tech I work with' },
+  { num: 50, label: 'Tech I work with' },
   { num: 8, label: 'Engineers led' },
   { num: 5, label: 'Companies' },
 ];
 
+const BOOTCAMPS = [
+  { name: 'AI Engineering Bootcamp', by: 'Ruby Thalib', when: '2026', note: 'Final project 95/100: a multitenant RAG API' },
+  { name: 'Backend Engineer', by: 'Productzilla Academy', when: '2023', note: 'Node.js, MongoDB, async programming' },
+  { name: 'Data Science', by: 'PKS Digital School', when: '2022', note: 'Python data analysis, scored 92 and 90' },
+  { name: 'Fullstack Web Development', by: 'PKS Digital School', when: '2021', note: 'Laravel CRUD apps' },
+];
+
 const EDUCATION = [
-  { school: 'Binus Online University', deg: 'Information Systems, Bachelor (still going)', gpa: '3.94', logo: '/assets/edu/binus.svg', w: 255, h: 152 },
+  { school: 'Binus Online University', deg: 'Information Systems, Bachelor (still going)', gpa: '3.92', logo: '/assets/edu/binus.svg', w: 255, h: 152 },
   { school: 'Telkom University', deg: 'Information Systems, Diploma 3 · Cum laude', gpa: '3.90', logo: '/assets/edu/telkom.png', w: 295, h: 360 },
 ];
 
@@ -61,9 +68,9 @@ export default function About() {
           className="about-statement"
           style={{ fontSize: 'clamp(24px, 3.3vw, 46px)', fontWeight: 500, letterSpacing: '-0.03em', lineHeight: 1.2, maxWidth: 1100, marginBottom: 'clamp(64px, 9vw, 120px)' }}
         >
-          I&apos;m a programmer living in the JavaScript world. React and Next.js on the front, Node, Express
-          and NestJS on the back. Started out just building features, now I lead engineers and own whole
-          products end to end.
+          I&apos;m a programmer who mostly lives in the JavaScript world. React and Next.js on the front,
+          NestJS, Node and some Go on the back. Started out just building features, now I lead small teams
+          and own products end to end, from the database to the UI to the deploy.
         </p>
 
         <div className="about-stats" style={{ marginBottom: 'clamp(64px, 9vw, 120px)' }}>
@@ -108,6 +115,17 @@ export default function About() {
                     <span style={{ color: 'var(--muted-2)' }}> / 4.0</span>
                   </div>
                 </div>
+              </div>
+            ))}
+
+            <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--muted-2)', margin: '40px 0 6px' }}>Bootcamps</div>
+            {BOOTCAMPS.map((b) => (
+              <div key={b.name} data-reveal style={{ display: 'flex', justifyContent: 'space-between', gap: 20, padding: '14px 0', borderTop: '1px solid var(--border)' }}>
+                <div>
+                  <div style={{ fontSize: 15.5, fontWeight: 500 }}>{b.name} <span className="muted" style={{ fontWeight: 400 }}>· {b.by}</span></div>
+                  <div className="muted" style={{ fontSize: 13.5, marginTop: 3 }}>{b.note}</div>
+                </div>
+                <span className="mono" style={{ fontSize: 11, color: 'var(--muted-2)', paddingTop: 4 }}>{b.when}</span>
               </div>
             ))}
           </div>

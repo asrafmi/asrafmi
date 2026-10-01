@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Atmosphere from '@/components/ui/Atmosphere';
-import Dock from '@/components/ui/Dock';
-import Header from '@/components/ui/Header';
-import Preloader from '@/components/ui/Preloader';
 import Cursor from '@/components/ui/Cursor';
-import SmoothScroll from '@/components/motion/SmoothScroll';
 import { themeScript } from '@/lib/theme';
 
 const BASE_URL = 'https://asrafmi.vercel.app';
@@ -92,12 +88,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        <SmoothScroll />
-        <Preloader />
         <Atmosphere />
-        <Header />
         <main style={{ position: 'relative', zIndex: 1 }}>{children}</main>
-        <Dock />
         <Cursor />
       </body>
     </html>

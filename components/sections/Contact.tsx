@@ -70,6 +70,13 @@ export default function Contact({ onChatOpen }: Props) {
             </svg>
             Send an email
           </a>
+          <a href="/cv" target="_blank" rel="noopener" className="btn" style={{ height: 54, padding: '0 26px', fontSize: 15 }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={17} height={17}>
+              <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+              <path d="M14 3v5h5M9 13h6M9 17h4" />
+            </svg>
+            View my CV
+          </a>
         </div>
 
         <a data-reveal href="mailto:asraf.muhammad07@gmail.com" className="ulink" style={{ fontSize: 'clamp(18px, 2.4vw, 30px)', fontWeight: 500, letterSpacing: '-0.02em' }}>

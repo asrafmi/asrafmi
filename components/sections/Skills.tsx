@@ -8,10 +8,21 @@ import { techBrand } from '@/lib/tech';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/motion';
 
 const SKILL_CATS = [
-  { title: 'Languages', chips: ['JavaScript', 'TypeScript', 'Python', 'PHP'] },
-  { title: 'Frontend', chips: ['React.js', 'Next.js', 'Redux', 'Vue.js', 'Vuex', 'Angular', 'React Native'] },
-  { title: 'Backend & Data', chips: ['Node.js', 'Express', 'NestJS', 'Laravel', 'MySQL', 'PostgreSQL', 'MongoDB', 'Elasticsearch'] },
-  { title: 'AI, ML & DevOps', chips: ['Machine Learning', 'NLP', 'Web Scraping', 'Docker', 'Kubernetes', 'CI/CD', 'Git'] },
+  {
+    title: 'Frontend',
+    chips: ['HTML', 'CSS', 'Tailwind CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Vue.js', 'Angular', 'Redux', 'Vuex', 'Zustand', 'TanStack Query', 'React Native', 'Chakra UI', 'shadcn/ui', 'Material UI', 'Webpack'],
+  },
+  {
+    title: 'Backend',
+    chips: ['Node.js', 'Express', 'NestJS', 'Laravel', 'Python', 'FastAPI', 'Go', 'Go Fiber', 'WebSocket', 'TypeORM', 'Prisma', 'GraphQL', 'REST API'],
+  },
+  { title: 'Database', chips: ['PostgreSQL', 'MySQL', 'Supabase', 'MongoDB', 'Elasticsearch', 'Redis'] },
+  { title: 'AI & Data', chips: ['Machine Learning', 'NLP', 'Web Scraping'] },
+  {
+    title: 'DevOps',
+    chips: ['Docker', 'Docker Compose', 'Kubernetes', 'GitHub Actions', 'Gitea Actions', 'Jenkins', 'Drone.io', 'CI/CD', 'Ubuntu', 'AWS S3', 'AWS EC2'],
+  },
+  { title: 'Tools', chips: ['Git', 'Postman', 'Figma', 'Jest', 'Cypress', 'Claude Code', 'GitHub Copilot'] },
 ];
 
 const AWARDS = [
@@ -22,8 +33,8 @@ const AWARDS = [
 ];
 
 const LANGS = [
-  { lang: 'Bahasa Indonesia', level: 'Native', pct: 1 },
-  { lang: 'English', level: 'Comfy at work', pct: 0.78 },
+  { lang: 'Bahasa Indonesia', level: 'Fluent', pct: 1 },
+  { lang: 'English', level: 'Pretty good', pct: 0.78 },
 ];
 
 export default function Skills() {

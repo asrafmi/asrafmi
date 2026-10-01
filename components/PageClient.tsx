@@ -9,6 +9,10 @@ import Skills from '@/components/sections/Skills';
 import Contact from '@/components/sections/Contact';
 import Marquee from '@/components/motion/Marquee';
 import ChatPanel from '@/components/ui/ChatPanel';
+import Header from '@/components/ui/Header';
+import Dock from '@/components/ui/Dock';
+import Preloader from '@/components/ui/Preloader';
+import SmoothScroll from '@/components/motion/SmoothScroll';
 import { scrollToSection } from '@/lib/motion';
 
 const STACK = ['React', 'Next.js', 'NestJS', 'TypeScript', 'Node.js', 'PostgreSQL', 'Elasticsearch', 'Kubernetes'];
@@ -21,6 +25,9 @@ export default function PageClient({ articles }: { articles: React.ReactNode }) 
 
   return (
     <>
+      <SmoothScroll />
+      <Preloader />
+      <Header />
       <Hero />
       <div style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <Marquee items={STACK} icons />
@@ -47,6 +54,7 @@ export default function PageClient({ articles }: { articles: React.ReactNode }) 
         </div>
       </footer>
 
+      <Dock />
       <ChatPanel onOpenRequest={registerOpen} />
     </>
   );

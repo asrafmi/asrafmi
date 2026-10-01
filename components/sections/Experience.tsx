@@ -10,60 +10,60 @@ const EXPERIENCES = [
     role: 'Technical Leader',
     date: 'Jan 2022 to now',
     company: 'CV. Solusi Teknologi Kreatif (STK)',
-    place: '· Jakarta, Indonesia',
+    place: '· Jakarta · Full time',
     items: [
-      'Led a squad of <strong>8 engineers</strong> building <strong>Satria Muda Indonesia</strong>, a realtime scoring, event and asset management platform (Next, Nest, PostgreSQL, Socket.io).',
-      'Led <strong>4 engineers</strong> on <strong>Hemdal</strong>, a B2B media monitoring SaaS with realtime listening, AI sentiment analysis and Elasticsearch search (Next, Nest, MySQL).',
-      'Led <strong>4 engineers</strong> on a <strong>Smart Room Booking</strong> system for DPR RI (Next, Nest, Socket.io, MySQL).',
-      'Tuned SSR and performance on <strong>Lion Parcel</strong> for <strong>+54.2%</strong> Lighthouse performance and <strong>+9.89%</strong> SEO (Node, Express, Vue).',
-      'Built a Telegram bot that keeps an eye on our systems (Python) and a face recognition attendance app (React, NestJS). Set up CI/CD with Drone.io, Gitea Actions, Docker and Kubernetes.',
-      'Got picked as <strong>High Achiever (1 of 13)</strong> at STK in late 2025 for pushing initiatives way past my job scope.',
+      'Led a squad of <strong>8 engineers</strong> building <strong>Satria Muda Indonesia</strong>, a platform for a national martial arts org with realtime digital scoring, events and asset management (Next.js, NestJS, PostgreSQL, Socket.io).',
+      'Led <strong>4 engineers</strong> on <strong>Hemdal</strong>, a B2B media monitoring SaaS that listens to social media and articles in realtime, with AI sentiment analysis and Elasticsearch search (Next.js, NestJS, MySQL).',
+      'Led <strong>4 engineers</strong> on a <strong>Smart Room Booking</strong> system for DPR RI, the Indonesian Parliament, with realtime room management (Next.js, NestJS, Socket.io, MySQL).',
+      'Tuned SSR and web performance for <strong>Lion Parcel</strong> and got <strong>+54.2%</strong> on Lighthouse performance and <strong>+9.89%</strong> on SEO (Node.js, Express, Vue.js).',
+      'Built internal tools: a Telegram bot that keeps an eye on our systems (Python) and a face recognition attendance app with Midtrans payments (React, NestJS).',
+      'Built a License API service with Go (Fiber), MySQL and GORM, set up CI/CD with Drone.io, Gitea Actions, Docker and Kubernetes, and do code reviews to keep things clean.',
+      'Got picked as <strong>High Achiever (1 of 13)</strong> at STK in late 2025 for stepping up past my scope and pushing initiatives on my own.',
     ],
   },
   {
     role: 'Full Stack Developer',
     date: 'Jan 2025 to Dec 2025',
     company: 'Ministry of Home Affairs · SIPD',
-    place: '· Jakarta · Project based',
+    place: '· Jakarta · Project based via STK',
     items: [
-      'Built <strong>geospatial maps</strong> for national priority programs (MBG, 3M Free Housing, Zero Tax), rolled out to <strong>500+ regional governments</strong> with React Leaflet.',
-      'Built interactive policy monitoring dashboards for people at the minister level (React, Tailwind, Chakra UI).',
-      'Owned the whole data flow, from PostgreSQL queries and backend prep all the way to the charts on screen.',
+      'Built <strong>geospatial distribution maps</strong> for national priority programs (MBG, 3 Million Free Housing, Zero Tax), used across <strong>500+ regional governments</strong> with React Leaflet.',
+      'Built interactive policy monitoring dashboards for minister level stakeholders, showing how programs roll out across regions (React, Tailwind CSS, Chakra UI).',
+      'Owned the whole data flow, from PostgreSQL queries and backend prep in Go (Fiber) all the way to the charts on screen.',
       'Helped ship a helpdesk app used by 500+ regional governments, running on Docker Compose on premise.',
     ],
   },
   {
     role: 'Full Stack Developer',
-    roleSub: '· FE heavy',
     date: 'Aug 2022 to Dec 2024',
     company: 'PT. Telkom Indonesia · Apilogy.id',
-    place: '· Bandung · Project based',
+    place: '· Bandung · Project based via STK',
     items: [
-      'Shipped a brand new homepage straight from the UI/UX prototype (React, Next, Tailwind).',
-      'Rebuilt user management and pushed <strong>SUS up 81.9%</strong>, content up 30% and visual impression up 53% (Vue, Webpack).',
-      'Fixed 5+ pentest security issues, wrote 15+ unit and 5+ integration tests (Jest, Cypress), and ran CI/CD on Jenkins and Drone.',
+      'Revamped the user management UI and got <strong>SUS up 81.9%</strong>, 30% more useful content and visual impression up 53% (Vue.js, Webpack).',
+      'Shipped the new apilogy.id homepage straight from the UI/UX prototype (React, Next.js, Tailwind CSS).',
+      'Fixed 5+ security issues from the pentest team and wrote 15+ unit and 5+ integration tests (Jest, Cypress).',
+      'Worked closely with backend and frontend folks on API integration, did code reviews, and ran CI/CD on Jenkins and Drone.io.',
     ],
   },
   {
     role: 'Full Stack Developer',
-    roleSub: '· FE heavy',
     date: 'Aug 2022 to Apr 2024',
     company: 'PT. Produkzilla Akademi · Productzilla',
-    place: '· Bandung · Part time',
+    place: '· Bandung · Project based via STK',
     items: [
-      'Built the backend for an <strong>online election app</strong> (NestJS, TS), plus the web app (React, Next, React Query) and a <strong>React Native</strong> mobile app.',
-      'Reworked the user management UX and got <strong>SUS up 90.5%</strong>, content up 36.4% and visual impression up 59.6%.',
-      'Mentored 5+ students in a short React class and containerized services with Docker Compose.',
+      'Turned new UI/UX designs into the user management pages and got <strong>SUS up 90.5%</strong>, 36.4% more useful content and visual impression up 59.6% (Vue.js, Webpack).',
+      'Built the backend for an <strong>online election product</strong> (NestJS, TypeScript), its web app from Figma mockups (React, Next.js, React Query) and the <strong>React Native</strong> mobile app.',
+      'Containerized the services with Docker Compose and set up CI/CD on Drone.io.',
+      'Taught and mentored 5+ students in a short React web dev class.',
     ],
   },
   {
     role: 'Full Stack Developer',
-    roleSub: '· FE heavy',
     date: 'Apr 2024 to Jul 2024',
     company: 'PT. Solusi Kebutuhan Teknologi',
-    place: '· Remote · Contract',
+    place: '· Remote · Freelance',
     items: [
-      'Shipped 3+ new features and leveled up 15+ existing ones on a <strong>Warehouse Management System</strong> (Angular, Express, MongoDB) for web and mobile.',
+      'Shipped 3+ new features, squashed 5+ bugs and leveled up 15+ existing features on a <strong>Warehouse Management System</strong>, web and mobile (Angular, Express, MongoDB).',
     ],
   },
 ];
@@ -150,7 +150,6 @@ export default function Experience() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', alignItems: 'baseline', marginBottom: 10 }}>
                     <h3 style={{ fontSize: 'clamp(24px, 2.6vw, 34px)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
                       {exp.role}
-                      {exp.roleSub && <span style={{ color: 'var(--muted-2)', fontWeight: 400, fontSize: '0.5em', letterSpacing: 0 }}> {exp.roleSub}</span>}
                     </h3>
                     <span className="mono" style={{ fontSize: 11, color: 'var(--muted-2)', whiteSpace: 'nowrap' }}>{exp.date}</span>
                   </div>
