@@ -74,12 +74,17 @@ export default function Experience() {
   useReveal(rootRef);
 
   useGSAP(() => {
-    gsap.utils.toArray<HTMLElement>('.exp-item').forEach((el, i) => {
-      ScrollTrigger.create({
-        trigger: el, start: 'top 60%', end: 'bottom 60%',
-        onToggle: (self) => { if (self.isActive) setActive(i); },
-      });
-    });
+    // Measure live on every scroll so late layout shifts (fonts, images)
+    // can never desync the counter from the item actually in view.
+    const items = gsap.utils.toArray<HTMLElement>('.exp-item');
+    const update = () => {
+      const line = innerHeight * 0.6;
+      let idx = 0;
+      items.forEach((el, i) => { if (el.getBoundingClientRect().top <= line) idx = i; });
+      setActive(idx);
+    };
+    ScrollTrigger.create({ trigger: '.exp-list', start: 'top bottom', end: 'bottom top', onUpdate: update, onRefresh: update });
+    update();
 
     if (prefersReducedMotion()) return;
 
