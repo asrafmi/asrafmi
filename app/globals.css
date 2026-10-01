@@ -267,6 +267,8 @@ strong { color: var(--text); font-weight: 600; }
 .proj-card .proj-arrow { transition: transform 0.5s var(--ease), background 0.5s var(--ease), color 0.5s var(--ease), border-color 0.5s var(--ease); }
 .proj-card:hover .proj-arrow { transform: rotate(45deg); background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .proj-card:hover .chip { color: var(--text); border-color: var(--border-2); }
+.tag-chip .tech-icon { color: var(--brand); transition: transform 0.5s var(--ease); }
+.tag-chip:hover .tech-icon { transform: scale(1.2) rotate(-6deg); }
 .proj-card .proj-num {
   font-size: clamp(90px, 10vw, 150px);
   font-weight: 600; letter-spacing: -0.06em; line-height: 0.8;

@@ -16,7 +16,7 @@ export const TECH: Record<string, Tech> = {
   'Next.js': { icon: 'nextdotjs', hex: '000000' },
   'Vue.js': { icon: 'vuedotjs', hex: '4FC08D' },
   Vuex: { icon: 'vuedotjs', hex: '4FC08D' },
-  Angular: { icon: 'angular', hex: '0F0F11' },
+  Angular: { icon: 'angular', hex: 'DD0031' },
   Redux: { icon: 'redux', hex: '764ABC' },
   Zustand: { icon: 'state', hex: '443E38' },
   'TanStack Query': { icon: 'reactquery', hex: 'FF4154' },
@@ -62,6 +62,15 @@ export const TECH: Record<string, Tech> = {
   Ubuntu: { icon: 'ubuntu', hex: 'E95420' },
   'AWS S3': { icon: 'cloud', hex: 'FF9900' },
   'AWS EC2': { icon: 'cloud', hex: 'FF9900' },
+  // AI services and libraries (used by project tags)
+  GSAP: { icon: 'gsap', hex: '0AE448' },
+  Firebase: { icon: 'firebase', hex: 'DD2C00' },
+  'Anthropic API': { icon: 'anthropic', hex: 'D97757' },
+  'OpenAI API': { icon: 'sparkle', hex: '10A37F' },
+  'Voyage AI': { icon: 'vectors', hex: '5B6CFF' },
+  pgvector: { icon: 'postgresql', hex: '4169E1' },
+  sklearn: { icon: 'scikitlearn', hex: 'F7931E' },
+  Websocket: { icon: 'socketdotio', hex: '010101' },
   // Tools
   Git: { icon: 'git', hex: 'F03C2E' },
   Postman: { icon: 'postman', hex: 'FF6C37' },
@@ -72,12 +81,12 @@ export const TECH: Record<string, Tech> = {
   'GitHub Copilot': { icon: 'githubcopilot', hex: '000000' },
 };
 
-// Brands that are near black would vanish on the dark theme, so they
-// follow the text colour instead.
+// Brands that are black or near black (Next.js, Express, Socket.io...) would
+// vanish on the dark theme, so they take the theme accent instead.
 export const techBrand = (name: string) => {
   const hex = TECH[name]?.hex;
-  if (!hex) return 'var(--text)';
+  if (!hex) return 'var(--accent-ink)';
   const [r, g, b] = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
   const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return lum < 0.16 ? 'var(--text)' : `#${hex}`;
+  return lum < 0.16 ? 'var(--accent-ink)' : `#${hex}`;
 };

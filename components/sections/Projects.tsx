@@ -2,6 +2,8 @@
 
 import { useRef } from 'react';
 import SectionHead from '@/components/motion/SectionHead';
+import TechIcon from '@/components/ui/TechIcon';
+import { techBrand } from '@/lib/tech';
 import { gsap, useGSAP } from '@/lib/motion';
 
 const PROJECTS = [
@@ -149,7 +151,14 @@ export default function Projects() {
               <h3 style={{ fontSize: 26, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.15, margin: '40px 0 12px' }}>{p.title}</h3>
               <p className="muted" style={{ fontSize: 14.5, lineHeight: 1.65 }}>{p.desc}</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 22 }}>
-                {p.tags.map((tag) => <span key={tag} className="chip">{tag}</span>)}
+                {p.tags.map((tag) => (
+                  <span key={tag} className="chip tag-chip" style={{ gap: 7 }}>
+                    <span style={{ display: 'inline-flex', color: techBrand(tag) }}>
+                      <TechIcon name={tag} size={13} />
+                    </span>
+                    {tag}
+                  </span>
+                ))}
               </div>
             </a>
           ))}
