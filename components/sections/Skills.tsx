@@ -1,51 +1,76 @@
+'use client';
+
+import { useRef } from 'react';
+import SectionHead from '@/components/motion/SectionHead';
+import { useReveal } from '@/hooks/useReveal';
+import TechIcon from '@/components/ui/TechIcon';
+import { techBrand } from '@/lib/tech';
+import { gsap, useGSAP, prefersReducedMotion } from '@/lib/motion';
+
 const SKILL_CATS = [
   { title: 'Languages', chips: ['JavaScript', 'TypeScript', 'Python', 'PHP'] },
   { title: 'Frontend', chips: ['React.js', 'Next.js', 'Redux', 'Vue.js', 'Vuex', 'Angular', 'React Native'] },
   { title: 'Backend & Data', chips: ['Node.js', 'Express', 'NestJS', 'Laravel', 'MySQL', 'PostgreSQL', 'MongoDB', 'Elasticsearch'] },
-  { title: 'AI / ML & DevOps', chips: ['Machine Learning', 'NLP', 'Web Scraping', 'Docker', 'Kubernetes', 'CI/CD', 'Git'] },
+  { title: 'AI, ML & DevOps', chips: ['Machine Learning', 'NLP', 'Web Scraping', 'Docker', 'Kubernetes', 'CI/CD', 'Git'] },
 ];
 
 const AWARDS = [
-  '<strong>High Achiever (1 of 13)</strong> — CV. Solusi Teknologi Kreatif, late 2025',
-  '<strong>Productzilla Talent Pool Awardee</strong> — channelled directly to partner companies (2022)',
-  '<strong>Sidoarjo District Scholarship</strong> — one of 800+ awardees (2022)',
-  '<strong>2nd Best Student</strong> — PKS Digital School Data Science Bootcamp',
+  '<strong>High Achiever (1 of 13)</strong> at CV. Solusi Teknologi Kreatif, late 2025',
+  '<strong>Productzilla Talent Pool Awardee</strong>, fast tracked straight to partner companies (2022)',
+  '<strong>Sidoarjo District Scholarship</strong>, one of 800+ awardees (2022)',
+  '<strong>2nd Best Student</strong> at the PKS Digital School Data Science Bootcamp',
+];
+
+const LANGS = [
+  { lang: 'Bahasa Indonesia', level: 'Native', pct: 1 },
+  { lang: 'English', level: 'Comfy at work', pct: 0.78 },
 ];
 
 export default function Skills() {
+  const rootRef = useRef<HTMLElement>(null);
+  useReveal(rootRef);
+
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+    gsap.utils.toArray<HTMLElement>('.skill-row').forEach((row) => {
+      gsap.from(row.querySelectorAll('.chip'), {
+        y: 24, opacity: 0, stagger: 0.04, duration: 0.9,
+        scrollTrigger: { trigger: row, start: 'top 88%', once: true },
+      });
+    });
+    gsap.utils.toArray<HTMLElement>('.lang-fill').forEach((el) => {
+      gsap.fromTo(el, { scaleX: 0 }, {
+        scaleX: Number(el.dataset.pct), duration: 1.8, ease: 'expo.inOut',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      });
+    });
+  }, { scope: rootRef });
+
   return (
-    <section id="skills" className="section-pad" style={{ position: 'relative' }}>
-      <div className="section-inner">
-        <div className="reveal">
-          <span style={{
-            fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
-            color: 'var(--accent)', display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 26,
-          }}>
-            <span style={{ width: 26, height: 1, background: 'var(--accent)', opacity: 0.6 }} />
-            Toolkit
-          </span>
-        </div>
-        <div className="reveal" data-delay="1">
-          <h2 style={{ fontSize: 'clamp(30px, 4vw, 46px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 18 }}>
-            Skills &amp; stack.
-          </h2>
-        </div>
+    <section id="skills" ref={rootRef} className="section">
+      <div className="wrap">
+        <SectionHead idx="04" label="Toolkit" title={<>Skills &amp; stack.</>} />
 
         <div className="skills-grid">
-          {/* Left — chips */}
-          <div className="reveal" data-delay="1">
-            {SKILL_CATS.map((cat) => (
-              <div key={cat.title} style={{ marginBottom: 30 }}>
-                <h4 style={{ fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--muted-2)', marginBottom: 16 }}>
+          <div style={{ borderBottom: '1px solid var(--border)' }}>
+            {SKILL_CATS.map((cat, i) => (
+              <div key={cat.title} className="skill-row">
+                <div className="mono" style={{ fontSize: 11, color: 'var(--muted)', paddingTop: 7, display: 'flex', gap: 12 }}>
+                  <span style={{ color: 'var(--accent-ink)' }}>{String(i + 1).padStart(2, '0')}</span>
                   {cat.title}
-                </h4>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {cat.chips.map((chip) => (
-                    <span key={chip} style={{
-                      fontSize: 14, padding: '9px 16px', borderRadius: 100,
-                      border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)',
-                      transition: 'all 0.35s var(--ease)', cursor: 'default',
-                    }}>
+                    <span
+                      key={chip}
+                      className="chip skill-chip"
+                      style={{
+                        fontFamily: 'var(--ff-sans)', fontSize: 14.5, padding: '8px 16px 8px 12px', gap: 9,
+                        color: 'var(--text)', letterSpacing: '-0.01em',
+                        ['--brand' as string]: techBrand(chip),
+                      }}
+                    >
+                      <TechIcon name={chip} size={16} />
                       {chip}
                     </span>
                   ))}
@@ -54,46 +79,40 @@ export default function Skills() {
             ))}
           </div>
 
-          {/* Right — languages + awards */}
-          <div className="reveal" data-delay="2">
-            <h4 style={{ fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--muted-2)', marginBottom: 16 }}>
-              Languages I speak
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-              {[
-                { lang: 'Bahasa Indonesia', level: 'Native', pct: '100%' },
-                { lang: 'English', level: 'Professional working', pct: '78%' },
-              ].map((l) => (
-                <div key={l.lang}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, fontSize: 14, marginBottom: 11 }}>
-                    <span>{l.lang}</span>
-                    <span style={{ fontFamily: 'var(--ff-mono)', fontSize: 12, color: 'var(--muted)' }}>{l.level}</span>
+          <div>
+            <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--muted-2)', marginBottom: 22 }}>Languages I speak</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
+              {LANGS.map((l) => (
+                <div key={l.lang} data-reveal>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, marginBottom: 12 }}>
+                    <span style={{ fontSize: 16 }}>{l.lang}</span>
+                    <span className="mono" style={{ fontSize: 10.5, color: 'var(--muted)' }}>{l.level}</span>
                   </div>
-                  <div style={{ height: 5, borderRadius: 100, background: 'var(--surface-2)', overflow: 'hidden' }}>
-                    <div style={{
-                      display: 'block', height: '100%', width: l.pct, borderRadius: 100,
-                      background: 'linear-gradient(90deg, var(--accent), var(--accent-2))',
-                      transition: 'width 1.3s cubic-bezier(0.16,1,0.3,1)',
-                    }} />
+                  <div style={{ height: 2, background: 'var(--border)', position: 'relative' }}>
+                    <span className="lang-fill" data-pct={l.pct} style={{ position: 'absolute', inset: 0, background: 'var(--accent-ink)', transformOrigin: 'left', transform: `scaleX(${l.pct})` }} />
                   </div>
                 </div>
               ))}
             </div>
 
-            <h4 style={{ fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--muted-2)', marginBottom: 16, marginTop: 38 }}>
-              Recognition
-            </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 11 }}>
+            <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--muted-2)', margin: '56px 0 10px' }}>Wins</div>
+            <ol style={{ listStyle: 'none' }}>
               {AWARDS.map((award, i) => (
-                <li key={i} style={{ color: 'var(--muted)', fontSize: 14.5, lineHeight: 1.55, paddingLeft: 18, position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, top: 9, width: 5, height: 5, borderRadius: '50%', background: 'var(--border-2)' }} />
+                <li key={award} data-reveal className="muted" style={{ display: 'flex', gap: 16, fontSize: 15, lineHeight: 1.55, padding: '16px 0', borderTop: i ? '1px solid var(--border)' : 'none' }}>
+                  <span className="mono" style={{ fontSize: 11, color: 'var(--muted-2)', paddingTop: 3 }}>{String(i + 1).padStart(2, '0')}</span>
                   <span dangerouslySetInnerHTML={{ __html: award }} />
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
         </div>
       </div>
+
+      <style>{`
+        .skill-chip .tech-icon { color: var(--muted); transition: color 0.35s var(--ease), transform 0.5s var(--ease); }
+        .skill-chip:hover { border-color: var(--border-2) !important; background: var(--surface-2); }
+        .skill-chip:hover .tech-icon { color: var(--brand); transform: scale(1.15) rotate(-6deg); }
+      `}</style>
     </section>
   );
 }

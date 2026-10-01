@@ -1,78 +1,115 @@
+'use client';
+
+import { useRef } from 'react';
+import Image from 'next/image';
+import SectionHead from '@/components/motion/SectionHead';
+import { useReveal } from '@/hooks/useReveal';
+import { gsap, SplitText, useGSAP, prefersReducedMotion } from '@/lib/motion';
+
+const STATS = [
+  { num: 4, label: 'Years shipping' },
+  { num: 15, label: 'Tech I work with' },
+  { num: 8, label: 'Engineers led' },
+  { num: 5, label: 'Companies' },
+];
+
+const EDUCATION = [
+  { school: 'Binus Online University', deg: 'Information Systems, Bachelor (still going)', gpa: '3.94', logo: '/assets/edu/binus.svg', w: 255, h: 152 },
+  { school: 'Telkom University', deg: 'Information Systems, Diploma 3 · Cum laude', gpa: '3.90', logo: '/assets/edu/telkom.png', w: 295, h: 360 },
+];
+
 export default function About() {
+  const rootRef = useRef<HTMLElement>(null);
+  useReveal(rootRef);
+
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+
+    // Statement lights up word by word as it crosses the viewport.
+    SplitText.create('.about-statement', {
+      type: 'words',
+      autoSplit: true,
+      onSplit: (self) =>
+        gsap.fromTo(self.words, { opacity: 0.14 }, {
+          opacity: 1, stagger: 0.1, ease: 'none',
+          scrollTrigger: { trigger: '.about-statement', start: 'top 80%', end: 'bottom 45%', scrub: true },
+        }),
+    });
+
+    gsap.utils.toArray<HTMLElement>('.stat-num').forEach((el) => {
+      const target = Number(el.dataset.value);
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: target, duration: 2, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        onUpdate: () => { el.textContent = String(Math.round(obj.v)).padStart(2, '0'); },
+      });
+    });
+
+    gsap.from('.edu-rule', {
+      scaleX: 0, stagger: 0.15, duration: 1.4, ease: 'expo.inOut',
+      scrollTrigger: { trigger: '.edu-list', start: 'top 85%', once: true },
+    });
+  }, { scope: rootRef });
+
   return (
-    <section id="about" className="section-pad" style={{ position: 'relative' }}>
-      <div className="section-inner">
-        <div className="reveal">
-          <span style={{
-            fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
-            color: 'var(--accent)', display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 26,
-          }}>
-            <span style={{ width: 26, height: 1, background: 'var(--accent)', opacity: 0.6 }} />
-            About
-          </span>
+    <section id="about" ref={rootRef} className="section">
+      <div className="wrap">
+        <SectionHead idx="01" label="About" title="Curious by default." />
+
+        <p
+          className="about-statement"
+          style={{ fontSize: 'clamp(24px, 3.3vw, 46px)', fontWeight: 500, letterSpacing: '-0.03em', lineHeight: 1.2, maxWidth: 1100, marginBottom: 'clamp(64px, 9vw, 120px)' }}
+        >
+          I&apos;m a programmer living in the JavaScript world. React and Next.js on the front, Node, Express
+          and NestJS on the back. Started out just building features, now I lead engineers and own whole
+          products end to end.
+        </p>
+
+        <div className="about-stats" style={{ marginBottom: 'clamp(64px, 9vw, 120px)' }}>
+          {STATS.map((s) => (
+            <div key={s.label} data-reveal style={{ padding: '28px clamp(16px, 2vw, 28px) 0' }}>
+              <div style={{ fontSize: 'clamp(56px, 7vw, 104px)', fontWeight: 600, letterSpacing: '-0.06em', lineHeight: 0.9, fontVariantNumeric: 'tabular-nums' }}>
+                <span className="stat-num" data-value={s.num}>{String(s.num).padStart(2, '0')}</span>
+                <span style={{ color: 'var(--accent-ink)' }}>+</span>
+              </div>
+              <div className="mono" style={{ fontSize: 11, color: 'var(--muted)', marginTop: 16 }}>{s.label}</div>
+            </div>
+          ))}
         </div>
 
-        <div className="about-grid">
-          {/* Left */}
-          <div className="reveal" data-delay="1">
-            <h2 style={{ fontSize: 'clamp(30px, 4vw, 46px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 18 }}>
-              Always chasing the feeling of discovery.
-            </h2>
-            <p style={{ color: 'var(--muted)', fontSize: 17.5, lineHeight: 1.75, marginBottom: 20 }}>
-              I&apos;m a programmer who lives in the <strong style={{ color: 'var(--text)', fontWeight: 600 }}>JavaScript world</strong> — from pixel-precise
-              React &amp; Next.js front-ends to robust Node.js, Express &amp; NestJS back-ends. Over the last
-              few years I&apos;ve grown from building features to <strong style={{ color: 'var(--text)', fontWeight: 600 }}>leading engineers</strong> and owning
-              full-stack products end to end.
-            </p>
-            <p style={{ color: 'var(--muted)', fontSize: 17.5, lineHeight: 1.75, marginBottom: 20 }}>
-              I care about clean code, measurable impact, and shipping things people actually use —
-              whether that&apos;s a <strong style={{ color: 'var(--text)', fontWeight: 600 }}>54% Lighthouse jump</strong> on a national logistics
-              platform, or geospatial dashboards used by the <strong style={{ color: 'var(--text)', fontWeight: 600 }}>Indonesian Ministry of Home Affairs</strong>.
-              New ideas, new tech, and the chance to affect life positively keep me going.
-            </p>
+        <div className="about-lower">
+          <p data-reveal className="muted" style={{ fontSize: 17, lineHeight: 1.75, maxWidth: 520 }}>
+            I care about clean code, real impact, and building stuff people actually use. Think a{' '}
+            <strong>54% Lighthouse jump</strong> on a national logistics platform, or map dashboards for the{' '}
+            <strong>Indonesian Ministry of Home Affairs</strong>. New ideas and new tech keep me going, and if
+            it makes someone&apos;s day a little easier, that&apos;s a win.
+          </p>
 
-            <div style={{ marginTop: 28, borderTop: '1px solid var(--border)', paddingTop: 24 }}>
-              {[
-                { school: 'Binus Online University', deg: 'Information System — Bachelor (Ongoing)', gpa: '3.94 / 4.0' },
-                { school: 'Telkom University', deg: 'Information System — Diploma 3 · Cumlaude', gpa: '3.90 / 4.0' },
-              ].map((edu, i) => (
-                <div key={i} className="edu-row" style={{
-                  padding: '12px 0',
-                  borderBottom: i === 0 ? '1px dashed var(--border)' : 'none',
-                }}>
-                  <div>
-                    <div style={{ fontWeight: 500 }}>{edu.school}</div>
-                    <div style={{ fontSize: 13.5, color: 'var(--muted)' }}>{edu.deg}</div>
+          <div className="edu-list">
+            <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--muted-2)', marginBottom: 18 }}>Education</div>
+            {EDUCATION.map((edu) => (
+              <div key={edu.school} data-reveal>
+                <div className="edu-rule" style={{ height: 1, background: 'var(--border-2)', transformOrigin: 'left' }} />
+                <div style={{ display: 'flex', gap: 18, padding: '22px 0', alignItems: 'center' }}>
+                  {/* Logos have dark wordmarks, so they always sit on a white tile. */}
+                  <span style={{
+                    width: 60, height: 60, borderRadius: 14, background: '#fff', flexShrink: 0,
+                    border: '1px solid var(--border)', display: 'grid', placeItems: 'center', padding: 8,
+                  }}>
+                    <Image src={edu.logo} alt={`${edu.school} logo`} width={edu.w} height={edu.h} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  </span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 500, fontSize: 18, letterSpacing: '-0.01em' }}>{edu.school}</div>
+                    <div className="muted" style={{ fontSize: 14, marginTop: 4 }}>{edu.deg}</div>
                   </div>
-                  <div style={{ fontFamily: 'var(--ff-mono)', fontSize: 13, color: 'var(--accent)', whiteSpace: 'nowrap' }}>{edu.gpa}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — stats */}
-          <div className="reveal" data-delay="2">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              {[
-                { num: '4', suffix: '+', label: 'years experience', accentNum: true },
-                { num: '15', suffix: '+', label: 'technologies', accentSuffix: true },
-                { num: '8', suffix: '+', label: 'engineers led', accentSuffix: true },
-                { num: '5', suffix: '+', label: 'companies', accentSuffix: true },
-              ].map((stat) => (
-                <div key={stat.label} style={{
-                  border: '1px solid var(--border)', borderRadius: 16, padding: 24,
-                  background: 'var(--surface)', transition: 'border-color 0.4s var(--ease), transform 0.4s var(--ease), background 0.4s',
-                }}>
-                  <div style={{ fontSize: 34, fontWeight: 700, letterSpacing: '-0.03em', marginBottom: 4 }}>
-                    {stat.accentNum
-                      ? <><span style={{ color: 'var(--accent)' }}>{stat.num}</span>{stat.suffix}</>
-                      : <>{stat.num}<span style={{ color: 'var(--accent)' }}>{stat.suffix}</span></>
-                    }
+                  <div className="mono" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>
+                    <span style={{ color: 'var(--accent-ink)' }}>{edu.gpa}</span>
+                    <span style={{ color: 'var(--muted-2)' }}> / 4.0</span>
                   </div>
-                  <div style={{ fontSize: 13, color: 'var(--muted)', fontFamily: 'var(--ff-mono)' }}>{stat.label}</div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

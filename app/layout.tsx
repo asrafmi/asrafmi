@@ -2,17 +2,22 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Atmosphere from '@/components/ui/Atmosphere';
 import Dock from '@/components/ui/Dock';
+import Header from '@/components/ui/Header';
+import Preloader from '@/components/ui/Preloader';
+import Cursor from '@/components/ui/Cursor';
+import SmoothScroll from '@/components/motion/SmoothScroll';
+import { themeScript } from '@/lib/theme';
 
 const BASE_URL = 'https://asrafmi.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Asraf Muhammad — Programmer & Technology Enthusiast',
+    default: 'Asraf Muhammad · Programmer & Tech Enthusiast',
     template: '%s | Asraf Muhammad',
   },
   description:
-    'Portfolio of Asraf Muhammad Izzuddin — full-stack programmer with 4+ years building scalable web apps and AI products with React, Next.js, Node.js & NestJS. Based in Indonesia. Open to work.',
+    'Portfolio of Asraf Muhammad Izzuddin, a full stack programmer with 4+ years building scalable web apps and AI products with React, Next.js, Node.js and NestJS. Based in Indonesia and open to work.',
   keywords: [
     'Asraf Muhammad',
     'Asraf',
@@ -52,9 +57,9 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   openGraph: {
-    title: 'Asraf Muhammad — Programmer & Technology Enthusiast',
+    title: 'Asraf Muhammad · Programmer & Tech Enthusiast',
     description:
-      'Portfolio of Asraf Muhammad Izzuddin — full-stack programmer with 4+ years building scalable web apps and AI products. Based in Indonesia.',
+      'Portfolio of Asraf Muhammad Izzuddin, a full stack programmer with 4+ years building scalable web apps and AI products. Based in Indonesia.',
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
@@ -64,15 +69,15 @@ export const metadata: Metadata = {
         url: `${BASE_URL}/opengraph-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Asraf Muhammad — Programmer & Technology Enthusiast',
+        alt: 'Asraf Muhammad · Programmer & Tech Enthusiast',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Asraf Muhammad — Programmer & Technology Enthusiast',
+    title: 'Asraf Muhammad · Programmer & Tech Enthusiast',
     description:
-      'Portfolio of Asraf Muhammad Izzuddin — full-stack programmer with 4+ years building scalable web apps and AI products. Based in Indonesia.',
+      'Portfolio of Asraf Muhammad Izzuddin, a full stack programmer with 4+ years building scalable web apps and AI products. Based in Indonesia.',
     creator: '@asrafmi',
   },
   verification: {
@@ -82,11 +87,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
+        <SmoothScroll />
+        <Preloader />
         <Atmosphere />
+        <Header />
         <main style={{ position: 'relative', zIndex: 1 }}>{children}</main>
         <Dock />
+        <Cursor />
       </body>
     </html>
   );

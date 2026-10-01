@@ -1,128 +1,156 @@
+'use client';
+
+import { useRef } from 'react';
+import SectionHead from '@/components/motion/SectionHead';
+import { gsap, useGSAP } from '@/lib/motion';
+
 const PROJECTS = [
   {
-    idx: '01 — Live',
-    title: 'SkripsiAI — Thesis Assistant',
-    desc: 'A platform for writing theses with built-in AI tools and automated document formatting, powered by the Anthropic API.',
+    idx: 'Live',
+    title: 'SkripsiAI · Thesis Assistant',
+    desc: 'Write your thesis without the headache. Built in AI tools plus automatic document formatting, powered by the Anthropic API.',
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase', 'Anthropic API'],
     href: 'https://thesis-ai-assistant.vercel.app/',
-    delay: '1',
   },
   {
-    idx: '02 — GitHub',
+    idx: 'GitHub',
     title: 'ChatGPT Clone',
-    desc: 'A full ChatGPT-style messenger with streaming responses and persistent chats, built on the OpenAI API.',
+    desc: 'A ChatGPT style messenger with streaming replies and chats that stick around, built on the OpenAI API.',
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'Firebase', 'OpenAI API'],
     href: 'https://github.com/asrafmi/chatgpt-messenger',
-    delay: '2',
   },
   {
-    idx: '03 — GitHub',
+    idx: 'GitHub',
     title: 'Diabetes Prediction',
-    desc: 'A smart web app that predicts diabetes risk from user inputs using a trained machine-learning model.',
-    tags: ['Python', 'Machine Learning', 'scikit-learn'],
+    desc: 'A web app that estimates your diabetes risk from a few inputs, powered by a trained machine learning model.',
+    tags: ['Python', 'Machine Learning', 'sklearn'],
     href: 'https://github.com/asrafmi/prediksi-diabetes-fixed',
-    delay: '1',
   },
   {
-    idx: '04 — GitHub',
+    idx: 'GitHub',
     title: 'Portfolio Website',
-    desc: 'A clean, animated personal portfolio site crafted from scratch with React and SCSS.',
+    desc: 'An older animated portfolio I built from scratch with React and SCSS. Kinda where it all started.',
     tags: ['React', 'SCSS'],
     href: 'https://github.com/asrafmi/emil-portofolio',
-    delay: '2',
   },
   {
-    idx: '05 — Production Live at Satria Muda Indonesia',
+    idx: 'Live at Satria Muda Indonesia',
     title: 'Satria Muda Indonesia Website',
-    desc: 'A website for Satria Muda Indonesia, showcasing their events, news, and team information.',
+    desc: 'The official site for Satria Muda Indonesia, with their events, news and team info all in one place.',
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'TypeORM', 'PostgreSQL', 'Websocket', 'Docker', 'Kubernetes'],
     href: 'https://satriamudaindonesia.com',
-    delay: '1',
   },
   {
-    idx: '06 — Production Live at Hemdal',
-    title: 'Hemdal — Social Media Monitoring Dashboard',
-    desc: 'A dashboard for monitoring social media metrics and engagement, providing real-time insights and analytics.',
+    idx: 'Live at Hemdal',
+    title: 'Hemdal · Social Media Monitoring',
+    desc: 'A dashboard for tracking social media metrics and engagement, with realtime insights and analytics.',
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'NestJS', 'MySQL', 'Elasticsearch', 'Websocket', 'Docker', 'Kubernetes'],
     href: 'https://www.hemdal.id',
-    delay: '1',
   },
 ];
 
 const ArrowIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width={16} height={16}>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width={16} height={16}>
     <path d="M7 17 17 7M7 7h10v10" />
   </svg>
 );
 
 export default function Projects() {
-  return (
-    <section id="projects" className="section-pad" style={{ position: 'relative' }}>
-      <div className="section-inner">
-        <div className="reveal">
-          <span style={{
-            fontFamily: 'var(--ff-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
-            color: 'var(--accent)', display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 26,
-          }}>
-            <span style={{ width: 26, height: 1, background: 'var(--accent)', opacity: 0.6 }} />
-            Selected Work
-          </span>
-        </div>
-        <div className="reveal" data-delay="1">
-          <h2 style={{ fontSize: 'clamp(30px, 4vw, 46px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 18 }}>
-            Things I&apos;ve built.
-          </h2>
-        </div>
+  const rootRef = useRef<HTMLElement>(null);
 
-        <div className="projects-grid">
-          {PROJECTS.map((p) => (
-            <a
-              key={p.title}
-              className="reveal"
-              data-delay={p.delay}
-              href={p.href}
-              target="_blank"
-              rel="noopener"
-              style={{
-                position: 'relative',
-                border: '1px solid var(--border)',
-                borderRadius: 20,
-                padding: 30,
-                background: 'var(--surface)',
-                overflow: 'hidden',
-                minHeight: 230,
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'border-color 0.5s var(--ease), transform 0.5s var(--ease), background 0.5s',
-                textDecoration: 'none',
-                color: 'inherit',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-                <span style={{ fontFamily: 'var(--ff-mono)', fontSize: 12, color: 'var(--muted-2)', letterSpacing: '0.1em' }}>{p.idx}</span>
-                <span style={{
-                  width: 38, height: 38, borderRadius: '50%', border: '1px solid var(--border)',
-                  display: 'grid', placeItems: 'center', color: 'var(--muted)',
-                  transition: 'all 0.45s var(--ease)',
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
+      const track = rootRef.current!.querySelector<HTMLElement>('.proj-track')!;
+      const distance = () => track.scrollWidth - window.innerWidth;
+
+      const slide = gsap.to(track, {
+        x: () => -distance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.proj-stage',
+          start: 'center center',
+          end: () => `+=${distance()}`,
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const n = PROJECTS.length;
+            const i = Math.min(n, Math.floor(self.progress * n) + 1);
+            const el = rootRef.current?.querySelector('.proj-count');
+            if (el) el.textContent = String(i).padStart(2, '0');
+          },
+        },
+      });
+
+      gsap.to('.proj-progress', {
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: '.proj-stage', start: 'center center', end: () => `+=${distance()}`, scrub: true, invalidateOnRefresh: true },
+      });
+
+      // Big outlined numbers drift against the scroll for depth.
+      gsap.utils.toArray<HTMLElement>('.proj-num').forEach((num) => {
+        gsap.fromTo(num, { xPercent: 30 }, {
+          xPercent: -20, ease: 'none',
+          scrollTrigger: { trigger: num, containerAnimation: slide, start: 'left right', end: 'right left', scrub: true },
+        });
+      });
+    });
+
+    mm.add('(max-width: 899px) and (prefers-reduced-motion: no-preference)', () => {
+      gsap.utils.toArray<HTMLElement>('.proj-card').forEach((card) => {
+        gsap.from(card, { y: 60, opacity: 0, duration: 1.2, scrollTrigger: { trigger: card, start: 'top 90%', once: true } });
+      });
+    });
+  }, { scope: rootRef });
+
+  return (
+    <section id="projects" ref={rootRef} className="section" style={{ overflow: 'hidden' }}>
+      <div className="wrap">
+        <SectionHead
+          idx="03"
+          label="Selected Work"
+          title={<>Things I&apos;ve built.</>}
+          aside="Stuff running in production, open source experiments and AI tools. Keep scrolling to slide through."
+        />
+      </div>
+
+      <div className="proj-stage">
+        <div className="proj-track">
+          {PROJECTS.map((p, i) => (
+            <a key={p.title} className="proj-card" href={p.href} target="_blank" rel="noopener">
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+                <span className="mono" style={{ fontSize: 10.5, color: 'var(--muted)', lineHeight: 1.5 }}>{p.idx}</span>
+                <span className="proj-arrow" style={{
+                  width: 42, height: 42, borderRadius: '50%', border: '1px solid var(--border-2)', flexShrink: 0,
+                  display: 'grid', placeItems: 'center', color: 'var(--text)',
                 }}>
                   <ArrowIcon />
                 </span>
               </div>
-              <h3 style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 10 }}>{p.title}</h3>
-              <p style={{ color: 'var(--muted)', fontSize: 14.5, lineHeight: 1.6, flex: 1 }}>{p.desc}</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginTop: 20 }}>
-                {p.tags.map((tag) => (
-                  <span key={tag} style={{
-                    fontFamily: 'var(--ff-mono)', fontSize: 11.5, color: 'var(--muted)',
-                    border: '1px solid var(--border)', borderRadius: 7, padding: '4px 9px',
-                    background: 'rgba(0,0,0,0.2)',
-                  }}>
-                    {tag}
-                  </span>
-                ))}
+
+              <div className="proj-num" aria-hidden style={{ margin: '32px 0 auto' }}>{String(i + 1).padStart(2, '0')}</div>
+
+              <h3 style={{ fontSize: 26, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.15, margin: '40px 0 12px' }}>{p.title}</h3>
+              <p className="muted" style={{ fontSize: 14.5, lineHeight: 1.65 }}>{p.desc}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 22 }}>
+                {p.tags.map((tag) => <span key={tag} className="chip">{tag}</span>)}
               </div>
             </a>
           ))}
+        </div>
+
+        <div className="wrap" style={{ marginTop: 36, display: 'flex', alignItems: 'center', gap: 20 }}>
+          <span className="mono" style={{ fontSize: 11, color: 'var(--muted)', fontVariantNumeric: 'tabular-nums' }}>
+            <span className="proj-count" style={{ color: 'var(--text)' }}>01</span> / {String(PROJECTS.length).padStart(2, '0')}
+          </span>
+          <span style={{ flex: 1, height: 1, background: 'var(--border)', position: 'relative' }}>
+            <span className="proj-progress" style={{ position: 'absolute', inset: 0, background: 'var(--text)', transform: 'scaleX(0)', transformOrigin: 'left' }} />
+          </span>
+          <a href="https://github.com/asrafmi" target="_blank" rel="noopener" className="mono ulink" style={{ fontSize: 11, color: 'var(--muted)' }}>
+            More on GitHub ↗
+          </a>
         </div>
       </div>
     </section>
