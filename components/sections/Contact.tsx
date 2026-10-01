@@ -1,12 +1,13 @@
 'use client';
 
 import { useRef } from 'react';
-import SplitReveal from '@/components/motion/SplitReveal';
 import { useReveal } from '@/hooks/useReveal';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
-import { gsap, useGSAP, prefersReducedMotion } from '@/lib/motion';
+import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/motion';
 
 type Props = { onChatOpen?: () => void };
+
+const ASKS = ['Hiring?', 'Building?', 'Bored?'];
 
 export default function Contact({ onChatOpen }: Props) {
   const rootRef = useRef<HTMLElement>(null);
@@ -18,6 +19,23 @@ export default function Contact({ onChatOpen }: Props) {
 
   useGSAP(() => {
     if (prefersReducedMotion()) return;
+
+    gsap.from('.ct-line', {
+      yPercent: 110, stagger: 0.12, duration: 1.3,
+      scrollTrigger: { trigger: '.ct-line', start: 'top 88%', once: true },
+    });
+
+    const n = ASKS.length;
+    const loop = gsap.timeline({ repeat: -1, paused: true });
+    for (let i = 1; i <= n; i++) {
+      loop.to('.ct-col', { yPercent: (-100 * i) / (n + 1), duration: 0.9, ease: 'expo.inOut' }, '+=1.4');
+    }
+    loop.set('.ct-col', { yPercent: 0 });
+    // Only spin while the section is on screen.
+    ScrollTrigger.create({
+      trigger: rootRef.current, start: 'top bottom', end: 'bottom top',
+      onToggle: (self) => (self.isActive ? loop.play() : loop.pause()),
+    });
     gsap.from('.contact-orb', {
       scale: 0.4, opacity: 0, ease: 'none',
       scrollTrigger: { trigger: rootRef.current, start: 'top bottom', end: 'center center', scrub: true },
@@ -42,18 +60,27 @@ export default function Contact({ onChatOpen }: Props) {
           <span>Contact</span>
         </div>
 
-        <SplitReveal
-          as="h2"
-          by="chars"
-          className="display"
-          style={{ fontSize: 'clamp(48px, 10vw, 168px)', marginBottom: 40 }}
-        >
-          Got an idea? <span style={{ color: 'var(--accent-ink)' }}>Let&apos;s build it.</span>
-        </SplitReveal>
+        <h2 className="display" style={{ fontSize: 'clamp(48px, 10vw, 168px)', marginBottom: 40 }}>
+          <span className="line-mask" style={{ display: 'block' }}>
+            <span className="ct-line" style={{ display: 'inline-block' }}>
+              {/* Rotating slot, same mechanic as the hero's "I build ___". */}
+              <span style={{ display: 'inline-block', height: '1.1em', overflow: 'hidden', verticalAlign: 'top' }}>
+                <span className="ct-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  {[...ASKS, ASKS[0]].map((w, i) => (
+                    <span key={i} style={{ height: '1.1em', lineHeight: 1.1, whiteSpace: 'nowrap' }}>{w}</span>
+                  ))}
+                </span>
+              </span>
+            </span>
+          </span>
+          <span className="line-mask" style={{ display: 'block' }}>
+            <span className="ct-line" style={{ display: 'inline-block', color: 'var(--accent-ink)' }}>Let&apos;s talk.</span>
+          </span>
+        </h2>
 
         <p data-reveal className="muted" style={{ fontSize: 17, maxWidth: 480, margin: '0 auto 44px', lineHeight: 1.65 }}>
-          Open to full stack and AI roles, freelance gigs, or just a fun collab.
-          Fastest way to get to know me? Just ask my AI twin.
+          Full time role, freelance gig or a weekend side project, I&apos;m down to hear it.
+          Email works. So does my AI twin.
         </p>
 
         <div data-reveal style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 56 }}>

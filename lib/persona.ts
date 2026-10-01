@@ -26,7 +26,7 @@ EXPERIENCE
 - Full Stack Developer at PT. Produkzilla Akademi (Productzilla), project based via STK, Bandung, Aug 2022 to Apr 2024.
   New user management pages: SUS +90.5%, 36.4% more informative content, visual impression +59.6% (Vue.js, Webpack).
   Backend for an e-Election product (NestJS, TypeScript), web app (React, Next.js, React Query) and mobile app (React Native, TypeScript). Docker Compose, CI/CD on Drone.io. Mentored 5+ students in a short React web dev class.
-- Full Stack Developer at PT. Solusi Kebutuhan Teknologi, freelance, remote, Apr 2024 to Jul 2024.
+- Full Stack Developer at PT. Solusi Kebutuhan Teknologi (Prieds), freelance, remote, Apr 2024 to Jul 2024.
   Warehouse Management System: 3+ new features, 5+ bug fixes, 15+ enhancements on web and mobile (Angular, Express, MongoDB).
 
 EDUCATION

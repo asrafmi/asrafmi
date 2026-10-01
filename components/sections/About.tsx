@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import Image from 'next/image';
+import LogoTile from '@/components/ui/LogoTile';
 import SectionHead from '@/components/motion/SectionHead';
 import { useReveal } from '@/hooks/useReveal';
 import { gsap, SplitText, useGSAP, prefersReducedMotion } from '@/lib/motion';
@@ -99,13 +99,7 @@ export default function About() {
               <div key={edu.school} data-reveal>
                 <div className="edu-rule" style={{ height: 1, background: 'var(--border-2)', transformOrigin: 'left' }} />
                 <div style={{ display: 'flex', gap: 18, padding: '22px 0', alignItems: 'center' }}>
-                  {/* Logos have dark wordmarks, so they always sit on a white tile. */}
-                  <span style={{
-                    width: 60, height: 60, borderRadius: 14, background: '#fff', flexShrink: 0,
-                    border: '1px solid var(--border)', display: 'grid', placeItems: 'center', padding: 8,
-                  }}>
-                    <Image src={edu.logo} alt={`${edu.school} logo`} width={edu.w} height={edu.h} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                  </span>
+                  <LogoTile logo={{ src: edu.logo, w: edu.w, h: edu.h }} alt={`${edu.school} logo`} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 500, fontSize: 18, letterSpacing: '-0.01em' }}>{edu.school}</div>
                     <div className="muted" style={{ fontSize: 14, marginTop: 4 }}>{edu.deg}</div>
