@@ -20,17 +20,24 @@ export default function Marquee({ items, reverse = false, speed = 40, outline = 
       { xPercent: reverse ? 0 : -50, duration: speed, ease: 'none', repeat: -1 });
 
     const skew = gsap.quickTo(track, 'skewX', { duration: 0.6, ease: 'power3' });
+    // Speed relaxes back to 1 on its own; only runs while the strip is on screen.
+    let target = 1;
+    const ease = () => {
+      target += (1 - target) * 0.06;
+      loop.timeScale(loop.timeScale() + (target - loop.timeScale()) * 0.15);
+    };
     ScrollTrigger.create({
       trigger: rootRef.current,
       start: 'top bottom',
       end: 'bottom top',
       onUpdate(self) {
         const v = self.getVelocity();
-        gsap.to(loop, { timeScale: 1 + Math.min(Math.abs(v) / 250, 6), duration: 0.2, overwrite: true });
-        gsap.to(loop, { timeScale: 1, duration: 1.2, delay: 0.2, ease: 'power2.out' });
+        target = 1 + Math.min(Math.abs(v) / 250, 6);
         skew(gsap.utils.clamp(-8, 8, v / -300));
       },
+      onToggle: (self) => (self.isActive ? gsap.ticker.add(ease) : gsap.ticker.remove(ease)),
     });
+    return () => gsap.ticker.remove(ease);
   }, { scope: rootRef });
 
   const row = (hidden: boolean) => (

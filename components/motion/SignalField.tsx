@@ -24,7 +24,7 @@ export default function SignalField() {
       accent = cs.getPropertyValue('--accent-ink').trim() || accent;
     };
     const resize = () => {
-      dpr = Math.min(devicePixelRatio || 1, 2);
+      dpr = Math.min(devicePixelRatio || 1, 1.5);
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -61,9 +61,12 @@ export default function SignalField() {
       t += 0.008;
     };
 
-    const loop = () => {
-      if (visible) draw();
+    let last = 0;
+    const loop = (now: number) => {
       raf = requestAnimationFrame(loop);
+      if (!visible || now - last < 32) return;
+      last = now;
+      draw();
     };
 
     readColors(); resize();

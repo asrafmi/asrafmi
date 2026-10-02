@@ -115,7 +115,7 @@ export default function Hero() {
       id="home"
       ref={rootRef}
       style={{
-        position: 'relative', minHeight: '100svh', overflow: 'hidden',
+        position: 'relative', minHeight: 'min(100svh, 1400px)', overflow: 'hidden',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
         paddingTop: 110, paddingBottom: 'clamp(90px, 9vw, 120px)',
       }}

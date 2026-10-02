@@ -33,14 +33,14 @@ export default function Preloader() {
       return;
     }
 
-    tl.from('.pl-meta > *', { yPercent: 120, stagger: 0.06, duration: 0.8 })
+    tl.from('.pl-meta > *', { yPercent: 120, stagger: 0.05, duration: 0.6 })
       .to(counter, {
-        v: 100, duration: 1.6, ease: 'power3.inOut',
+        v: 100, duration: 0.7, ease: 'power3.inOut',
         onUpdate: () => { if (countRef.current) countRef.current.textContent = String(Math.round(counter.v)).padStart(3, '0'); },
       }, 0)
-      .to('.pl-line', { scaleX: 1, duration: 1.6, ease: 'power3.inOut' }, 0)
-      .to('.pl-count, .pl-meta > *', { yPercent: -120, stagger: 0.04, duration: 0.6, ease: 'expo.in' }, '+=0.1')
-      .to(rootRef.current, { yPercent: -100, duration: 1, ease: 'expo.inOut' }, '-=0.15')
+      .to('.pl-line', { scaleX: 1, duration: 0.7, ease: 'power3.inOut' }, 0)
+      .to('.pl-count, .pl-meta > *', { yPercent: -120, stagger: 0.03, duration: 0.35, ease: 'expo.in' }, '+=0')
+      .to(rootRef.current, { yPercent: -100, duration: 0.7, ease: 'expo.inOut' }, '-=0.15')
       .call(markIntroDone, [], '-=0.55');
   }, { scope: rootRef });
 

@@ -50,7 +50,7 @@ export default function PortraitZoom() {
 
   return (
     <section ref={rootRef} aria-label="Portrait" style={{ position: 'relative' }}>
-      <div className="pz-stage" style={{ position: 'relative', height: '100svh', overflow: 'hidden', padding: 'clamp(12px, 1.6vw, 20px)' }}>
+      <div className="pz-stage" style={{ position: 'relative', height: 'min(100svh, 1400px)', overflow: 'hidden', padding: 'clamp(12px, 1.6vw, 20px)' }}>
         <div
           className="pz-frame"
           style={{ position: 'relative', width: '100%', height: '100%', background: '#000', borderRadius: 'clamp(16px, 2vw, 28px)', overflow: 'hidden' }}
