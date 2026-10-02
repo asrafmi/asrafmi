@@ -1,3 +1,8 @@
+import Anthropic from '@anthropic-ai/sdk';
+import { PERSONA, GUARD_SYSTEM } from '@/lib/persona';
+
+const anthropic = new Anthropic();
+
 type Message = { role: 'user' | 'assistant'; content: string };
 
 const OFF_TOPIC_REPLY =
@@ -32,26 +37,16 @@ function isOffTopic(question: string): boolean {
   return q.length > 200 && !ON_TOPIC.some((kw) => q.includes(kw));
 }
 
-function sseDone(controller: ReadableStreamDefaultController<Uint8Array>, encoder: TextEncoder) {
-  controller.enqueue(encoder.encode('data: [DONE]\n\n'));
-}
-
-function sseError(controller: ReadableStreamDefaultController<Uint8Array>, encoder: TextEncoder) {
-  controller.enqueue(encoder.encode('data: [ERROR]\n\n'));
-}
-
 export async function POST(req: Request) {
   const { messages }: { messages: Message[] } = await req.json();
 
   const lastUserMessage = [...messages].reverse().find((m) => m.role === 'user');
-
-  const encoder = new TextEncoder();
-
   if (lastUserMessage && isOffTopic(lastUserMessage.content)) {
+    const encoder = new TextEncoder();
     const stream = new ReadableStream({
       start(controller) {
         controller.enqueue(encoder.encode(`data: ${JSON.stringify(OFF_TOPIC_REPLY)}\n\n`));
-        sseDone(controller, encoder);
+        controller.enqueue(encoder.encode('data: [DONE]\n\n'));
         controller.close();
       },
     });
@@ -60,80 +55,38 @@ export async function POST(req: Request) {
     });
   }
 
-  const baseUrl = process.env.KNOWLEDGE_BASE_API_URL;
-  const companyId = process.env.KNOWLEDGE_BASE_API_COMPANY_ID;
-  const tenantId = process.env.KNOWLEDGE_BASE_API_TENANT_ID;
+  const transcript = messages
+    .map((m) => (m.role === 'user' ? 'Visitor: ' : 'Asraf: ') + m.content)
+    .join('\n');
+
+  const prompt = `${PERSONA}\n\n${GUARD_SYSTEM}\n\n--- Conversation so far ---\n${transcript}\n\nReply now as Asraf (first person, concise). Do not prefix with your name.`;
 
   const stream = new ReadableStream({
     async start(controller) {
-      try {
-        if (!baseUrl || !companyId || !tenantId) {
-          throw new Error('Knowledge base API is not configured');
-        }
+      const encoder = new TextEncoder();
 
-        const upstream = await fetch(`${baseUrl}/v1/completion/stream`, {
-          method: 'POST',
-          headers: {
-            accept: 'application/json',
-            'content-type': 'application/json',
-            'x-company-id': companyId,
-            'x-tenant-id': tenantId,
-          },
-          body: JSON.stringify({ query: lastUserMessage?.content ?? '' }),
+      try {
+        const response = await anthropic.messages.stream({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 512,
+          messages: [{ role: 'user', content: prompt }],
         });
 
-        if (!upstream.ok || !upstream.body) {
-          throw new Error(`Upstream error: ${upstream.status}`);
-        }
-
-        const reader = upstream.body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = '';
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-
-          // Upstream SSE events are separated by a blank line.
-          let sepIndex: number;
-          while ((sepIndex = buffer.indexOf('\n\n')) !== -1) {
-            const rawEvent = buffer.slice(0, sepIndex);
-            buffer = buffer.slice(sepIndex + 2);
-
-            let eventType = 'message';
-            let data = '';
-            for (const line of rawEvent.split('\n')) {
-              if (line.startsWith('event:')) {
-                eventType = line.slice(6).trim();
-              } else if (line.startsWith('data:')) {
-                data += line.slice(5).trim();
-              }
-            }
-
-            if (!data) continue;
-
-            if (eventType === 'done') {
-              // Final event carries `sources`, not text — not surfaced in the UI.
-              continue;
-            }
-
-            try {
-              const parsed = JSON.parse(data) as { text?: string };
-              if (parsed.text) {
-                controller.enqueue(encoder.encode(`data: ${JSON.stringify(parsed.text)}\n\n`));
-              }
-            } catch {
-              // malformed chunk, skip
-            }
+        for await (const chunk of response) {
+          if (
+            chunk.type === 'content_block_delta' &&
+            chunk.delta.type === 'text_delta'
+          ) {
+            controller.enqueue(
+              encoder.encode(`data: ${JSON.stringify(chunk.delta.text)}\n\n`)
+            );
           }
         }
 
-        sseDone(controller, encoder);
+        controller.enqueue(encoder.encode('data: [DONE]\n\n'));
       } catch (err) {
         console.error('[chat] stream error:', err);
-        sseError(controller, encoder);
+        controller.enqueue(encoder.encode('data: [ERROR]\n\n'));
       } finally {
         controller.close();
       }
